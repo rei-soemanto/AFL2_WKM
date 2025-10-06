@@ -2,46 +2,51 @@
 
 @section('name', 'Product')
 @section('content')
-<div class="flex bg-[#000000]">
-    <div id="main-content" class="flex-1 transition-all duration-300 ease-in-out">
-        <main>
-            <div class="font-sans" style="background-image: url('{{ asset('img/logoWKM.jpg') }}'); background-size: 70%; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
-                <div class="bg-[#0f0f0f98] py-16 px-8 md:py-24 md:px-20 lg:px-40">
-                    <div class="max-w-7xl mx-auto">
-                        <h1 class="text-4xl md:text-5xl font-bold text-center mb-16 text-white">Our Innovative <span class="text-[#e0bb35]">Products & Solutions</span></h1>
-                        
-                        <?php if (empty($product_data)): ?>
-                            <div class="text-center text-white bg-black/50 p-10 rounded-lg">
-                                <p>No products are currently listed. Please check back later.</p>
-                            </div>
-                        <?php else: ?>
-                            <?php foreach ($product_data as $category_name => $products_in_category): ?>
-                            <div class="mb-20">
-                                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white"><?php echo htmlspecialchars($category_name); ?></h2>
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    <?php foreach ($products_in_category as $item): ?>
-                                        <a href="product-detail.php?id=<?php echo $item['product_id']; ?>" class="block h-full product-card" data-name="<?php echo strtolower(htmlspecialchars($item['name'])); ?>" data-category="<?php echo strtolower(htmlspecialchars($item['second_category_name'])); ?>">
-                                            <div class="bg-black/90 p-6 rounded-lg shadow-lg flex flex-col md:flex-row gap-6 h-full hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                                                <div class="flex-1">
-                                                    <p class="text-sm font-semibold text-white mb-2"><?php echo htmlspecialchars($item['second_category_name']); ?></p>
-                                                    <h3 class="text-2xl font-bold mb-2 text-[#e0bb35]"><?php echo htmlspecialchars($item['name']); ?></h3>
-                                                    <p class="text-white text-sm"><?php echo htmlspecialchars($item['description']); ?></p>
-                                                </div>
-                                                <div class="md:w-2/5 flex-shrink-0">
-                                                    <img src="<?php echo htmlspecialchars($item['image'] ?? 'https://placehold.co/600x400/CCCCCC/FFFFFF?text=No+Image'); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="rounded-lg w-full h-48 object-contain">
-                                                </div>
-                                            </div>
-                                        </a>
-                                    <?php endforeach; ?>
+<main class="product-main-background" style="background-image: url('{{ asset('img/logoWKM.jpg') }}'); background-size: 70%;">
+    <div class="product-bg-overlay py-5">
+        <div class="container-xl py-5">
+            <h1 class="display-4 fw-bold text-center mb-5 text-white">Our Innovative <span class="text-gold">Products & Solutions</span></h1>
+            
+            {{-- Blade's @forelse loop is cleaner and handles the "empty" case automatically --}}
+            @forelse ($product_data as $brand_name => $products_in_brand)
+            <div class="mb-5">
+                <h2 class="display-5 fw-bold text-center mb-5 text-white">{{ $brand_name }}</h2>
+                
+                {{-- Bootstrap's grid system for the product list --}}
+                <div class="row row-cols-1 row-cols-lg-2 g-4">
+                    @foreach ($products_in_brand as $item)
+                    <div class="col">
+                        {{-- The product card is now a link wrapping a Bootstrap card --}}
+                        <a href="/product/{{ $item['product_id'] }}" class="text-decoration-none h-100 d-block">
+                            <div class="card bg-dark text-white h-100 shadow-lg custom-card-hover">
+                                <div class="row g-0 h-100">
+                                    {{-- Text content column --}}
+                                    <div class="col-md-7">
+                                        <div class="card-body d-flex flex-column">
+                                            <p class="card-text text-white-50 mb-2">{{ $item['category_name'] }}</p>
+                                            <h3 class="card-title h4 fw-bold mb-2 text-gold">{{ $item['name'] }}</h3>
+                                            <p class="card-text small">{{ $item['description'] }}</p>
+                                        </div>
+                                    </div>
+                                    {{-- Image column --}}
+                                    <div class="col-md-5 d-flex align-items-center p-3">
+                                        <img src="{{ $item['image'] ?? 'https://placehold.co/600x400/212529/FFFFFF?text=No+Image' }}" class="img-fluid rounded product-card-img" alt="{{ $item['name'] }}">
+                                    </div>
                                 </div>
                             </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-
+                        </a>
                     </div>
+                    @endforeach
                 </div>
             </div>
-        </main>
+            @empty
+                {{-- This block runs if $product_data is empty --}}
+                <div class="text-center text-white bg-dark p-5 rounded-3">
+                    <p class="lead">No products are currently listed. Please check back later.</p>
+                </div>
+            @endforelse
+
+        </div>
     </div>
-</div>
+</main>
 @endsection
