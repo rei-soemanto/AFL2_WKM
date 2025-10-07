@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Service extends Model
 {
+    use HasFactory;
     /**
      * The attributes that are mass assignable.
      *
@@ -17,6 +19,8 @@ class Service extends Model
         'name',
         'description',
     ];
+
+    public $timestamps = false;
 
     /**
      * Get the category that owns the service.

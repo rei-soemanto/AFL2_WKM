@@ -101,6 +101,7 @@ class PageController extends Controller
                 'category_description' => 'Services related to ' . $category->name,
                 'services' => $category->services->map(function ($service) {
                     return [
+                        'id' => $service->id,
                         'name' => $service->name,
                         'description' => $service->description,
                     ];

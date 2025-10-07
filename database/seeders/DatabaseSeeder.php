@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\ProjectImage;
+use App\Models\Product;
+use App\Models\Project;
+use App\Models\Service;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -24,6 +26,12 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             ServiceCategorySeeder::class
         ]);
+
+        Service::factory()->count(15)->create();
+
+        Product::factory()->count(10)->create();
+
+        Project::factory()->count(8)->create();
 
         User::factory()->create([
             'name' => 'Test User',

@@ -7,11 +7,11 @@
         
         <div class="container">
 
-            <div class="bg-light bg-opacity-75 rounded-3 shadow-lg p-4 p-md-5">
+            <div class="bg-light bg-opacity-95 rounded-3 shadow-lg p-4 p-md-5">
                 
                 <nav aria-label="breadcrumb" class="mb-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('product') }}" class="text-decoration-none" style="color: #e0bb35;">Products</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('product') }}" class="text-decoration-none" style="color: #000000;">Products</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
                     </ol>
                 </nav>
@@ -32,7 +32,7 @@
 
                     <div class="col-lg-6">
                         <h2 class="fw-bold mb-4 text-dark">Product Overview</h2>
-                        <div class="lead text-secondary mb-4">
+                        <div class="lead fw-normal mb-4">
                             {!! nl2br(e($product->description)) !!}
                         </div>
                         @if ($product->pdf_path)

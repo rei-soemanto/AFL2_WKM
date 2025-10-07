@@ -20,7 +20,7 @@
                                 @foreach ($projects_in_category as $index => $item)
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <a href="/project/{{ $item['project_id'] }}" class="text-decoration-none">
-                                            <div class="bg-dark rounded-3 shadow-lg p-5">
+                                            <div class="bg-custom-card-dark rounded-3 shadow-lg p-5">
                                                 <div class="row align-items-center g-5">
                                                     <div class="col-md-6">
                                                         <img src="{{ $item['image'] ?? 'https://placehold.co/600x400/212529/FFFFFF?text=No+Image' }}" alt="{{ $item['name'] }}" class="img-fluid rounded-3 project-card-img">
@@ -48,7 +48,7 @@
                     @else
                         @php $item = $projects_in_category[0]; @endphp
                         <a href="/project/{{ $item['project_id'] }}" class="text-decoration-none">
-                            <div class="bg-dark rounded-3 shadow-lg p-5">
+                            <div class="bg-custom-card-dark rounded-3 shadow-lg p-5">
                                 <div class="row align-items-center g-5">
                                     <div class="col-md-6">
                                         <img src="{{ $item['image'] ?? 'https://placehold.co/600x400/212529/FFFFFF?text=No+Image' }}" alt="{{ $item['name'] }}" class="img-fluid rounded-3 project-card-img">

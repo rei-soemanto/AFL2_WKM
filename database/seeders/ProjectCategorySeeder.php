@@ -14,7 +14,16 @@ class ProjectCategorySeeder extends Seeder
     public function run(): void
     {
         ProjectCategory::insert([
-            
+            ['name' => 'PLC Integration'],
+            ['name' => 'PLC Modification'],
+            ['name' => 'SCADA Integration'],
+            ['name' => 'SCADA Modification'],
+            ['name' => 'Electrical/Mechanical Installation'],
+            ['name' => 'Electrical/Mechanical Modification'],
+            ['name' => 'Sensor Installation/Modification'],
+            ['name' => 'Reporting Installation/Modification'],
+            ['name' => 'PIMS Integration'],
+            ['name' => 'OEE Integration'],
         ]);
     }
 }
