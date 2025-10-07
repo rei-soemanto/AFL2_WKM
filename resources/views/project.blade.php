@@ -9,18 +9,15 @@
             
             @forelse ($project_data as $category_name => $projects_in_category)
                 @php
-                    // Create a unique, URL-safe ID for each carousel
                     $carouselId = Str::slug($category_name);
                 @endphp
                 <div class="mb-5">
                     <h2 class="display-5 fw-bold text-center mb-5 text-white">{{ $category_name }}</h2>
                     
-                    {{-- Check if there are multiple projects to decide if a carousel is needed --}}
                     @if (count($projects_in_category) > 1)
                         <div id="{{ $carouselId }}" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 @foreach ($projects_in_category as $index => $item)
-                                    {{-- The first item must have the 'active' class --}}
                                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                         <a href="/project/{{ $item['project_id'] }}" class="text-decoration-none">
                                             <div class="bg-dark rounded-3 shadow-lg p-5">
