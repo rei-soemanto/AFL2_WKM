@@ -15,7 +15,7 @@
                     @foreach ($products_in_brand as $item)
                     <div class="col">
                         <a href="{{ route('product.detail', ['id' => $item->id]) }}" class="text-decoration-none h-100 d-block">
-                            <div class="card bg-custom-card-dark text-white h-100 shadow-lg custom-card-hover">
+                            <div class="card bg-custom-card-dark text-white h-100 shadow-lg custom-card">
                                 <div class="row g-0 h-100">
                                     <div class="col-md-7">
                                         <div class="card-body d-flex flex-column">
