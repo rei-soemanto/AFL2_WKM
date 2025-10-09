@@ -41,5 +41,29 @@
                 console.error(error);
             });
         });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const showMoreButtons = document.querySelectorAll('.show-more-btn');
+
+        showMoreButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const brand = this.getAttribute('data-brand');
+
+                const hiddenProducts = document.querySelectorAll(`.product-item.d-none[data-brand="${brand}"]`);
+
+                const itemsToShow = Array.from(hiddenProducts).slice(0, 10);
+
+                itemsToShow.forEach(item => {
+                    item.classList.remove('d-none');
+                });
+
+                const remainingHidden = document.querySelectorAll(`.product-item.d-none[data-brand="${brand}"]`);
+
+                if (remainingHidden.length === 0) {
+                    this.style.display = 'none';
+                }
+            });
+        });
+    });
 </script>
 </html>
