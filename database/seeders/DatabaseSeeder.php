@@ -26,10 +26,10 @@ class DatabaseSeeder extends Seeder
             ServiceCategorySeeder::class
         ]);
 
-        Service::factory()->count(10)->create();
+        Service::factory()->count(100)->create();
 
-        Product::factory()->count(100)->create();
+        Product::factory()->count(150)->create();
 
-        Project::factory()->count(10)->create();
+        Project::factory()->count(50)->create();
     }
 }

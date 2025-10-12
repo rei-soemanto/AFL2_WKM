@@ -1,5 +1,5 @@
 @import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 // Variables
 $color-bg-dark: #0F0F0F;
@@ -45,7 +45,7 @@ body {
 }
 
 .navbar-logo {
-    height: 6rem;
+    height: 180px;
     transition: height 0.3s ease;
 }
 

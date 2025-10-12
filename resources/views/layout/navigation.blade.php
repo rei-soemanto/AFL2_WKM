@@ -7,7 +7,7 @@
         </a>
 
         <!-- Nav links (MD - XL) -->
-        <ul class="navbar-nav d-none d-md-flex flex-row align-items-center">
+        <ul class="navbar-nav d-none fw-bold d-md-flex flex-row align-items-center">
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/') }}">About</a></li>
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/project') }}">Portfolio</a></li>
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
@@ -15,7 +15,7 @@
         </ul>
 
         <!-- Contact -->
-        <a href="#contact" class="btn btn-custom fw-semibold text-nowrap">
+        <a href="#contact" class="btn btn-custom fw-bold text-nowrap mx-5">
             Contact Us
         </a>
     </div>
