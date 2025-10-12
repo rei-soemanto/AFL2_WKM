@@ -27,7 +27,7 @@
                                                     </div>
                                                     <div class="col-md-6 text-white">
                                                         <h3 class="h2 fw-bold mb-3 text-gold">{{ $item['name'] }}</h3>
-                                                        <p class="text-white-50">{{ $item['description'] }}</p>
+                                                        <p class="text-white-50">{{ Str::limit($item['description'], 200) }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="col-md-6 text-white">
                                         <h3 class="h2 fw-bold mb-3 text-gold">{{ $item['name'] }}</h3>
-                                        <p class="text-white-50">{{ $item['description'] }}</p>
+                                        <p class="text-white-50">{{ Str::limit($item['description'], 200) }}</p>
                                     </div>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@
         <section id="about" class="py-5">
             <div class="container text-center">
                 <h2 class="display-5 fw-bold mb-4 text-white">About <span class="text-gold">PT. Wraksa Kencana Mukti</span></h2>
-                <p class="lead text-light mb-5 mx-auto" style="max-width: 720px;">
+                <p class="lead text-light mb-5 mx-auto fw-normal" style="max-width: 720px;">
                     Established in 2024, <span class="text-gold">PT. Wraksa Kencana Mukti</span> is a system integrator with deep expertise in the automation industry. We are dedicated to delivering smart, efficient solutions by integrating cutting-edge technology and fostering collaboration.
                 </p>
 
@@ -45,14 +45,14 @@
                     <div class="col-lg-4 text-light">
                         <div class="mb-5">
                             <h3 class="h2 fw-bold mb-3">Solutions</h3>
-                            <ul class="list-unstyled">
+                            <ul class="fw-semibold list-unstyled">
                                 <li class="mb-2">✓ Auto Logging Reporting</li>
                                 <li class="mb-2">✓ Automation Design & Development</li>
                             </ul>
                         </div>
                         <div>
                             <h3 class="h2 fw-bold mb-3">Spare Parts</h3>
-                            <ul class="list-unstyled">
+                            <ul class="fw-semibold list-unstyled">
                                 <li class="mb-2">✓ PLC Automation Spare Parts</li>
                                 <li class="mb-2">✓ Automation Software</li>
                             </ul>

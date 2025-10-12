@@ -20,7 +20,7 @@
                                     <a href="{{ route('service.detail', ['id' => $service['id']]) }}" class="text-decoration-none">
                                         <div class="service-item h-100 custom-card-mouseover">
                                             <h3 class="h5 fw-bold" style="color: #0f0f0f;">{{ $service['name'] }}</h3>
-                                            <p class="mb-0 text-secondary">{{ $service['description'] }}</p>
+                                            <p class="mb-0 text-secondary">{{ Str::limit($service['description'], 120) }}</p>
                                         </div>
                                     </a>
                                 </div>
