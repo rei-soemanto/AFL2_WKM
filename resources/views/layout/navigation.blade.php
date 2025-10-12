@@ -39,9 +39,9 @@
     <div class="collapse navbar-collapse d-md-none" id="navLinksCollapse">
         <div class="container-fluid">
             <ul class="navbar-nav 
-                       flex-column flex-sm-row 
-                       align-items-center justify-content-center 
-                       mb-0 mx-auto w-100 custom-nav-xs">
+                    flex-column flex-sm-row 
+                    align-items-center justify-content-center 
+                    mb-0 mx-auto w-100 custom-nav-xs">
                 <li class="nav-item mx-sm-1 py-2">
                     <a class="nav-link" href="{{ url('/') }}">About</a>
                 </li>
