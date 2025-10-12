@@ -1,29 +1,56 @@
 @import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+// Variables
+$color-bg-dark: #0F0F0F;
+$color-gold: #e0bb35;
+$color-gold-light: #efd781;
+$color-white: #ffffff;
+$color-overlay: rgba(15, 15, 15, 0.7);
+
+// Breakpoint mixin
+@mixin respond($breakpoint) {
+    @if        $breakpoint  == xl {
+        @media (max-width: 1199.98px) { @content; }
+    } @else if $breakpoint  == lg {
+        @media (max-width: 991.98px) { @content; }
+    } @else if $breakpoint  == md {
+        @media (max-width: 767.98px) { @content; }
+    } @else if $breakpoint  == sm {
+        @media (max-width: 575.98px) { @content; }
+    }
+}
+
+
 body {
     overflow-x: hidden;
 }
 
 .bg-custom-dark {
-    background-color: #0F0F0F !important;
+    background-color: $color-bg-dark !important;
 }
 
 .bg-custom-card-dark {
-    background-color: #0f0f0fc5 !important;
+    background-color: $color-bg-dark !important;
 }
 
 // NAVBAR
 .navbar-custom {
-    background-color: #0F0F0F;
+    background-color: $color-bg-dark;
     transition: padding 0.3s ease;
 }
 
+.navbar-brand {
+    padding: 0;
+}
+
 .navbar-logo {
-    height: 150px;
+    height: 6rem;
     transition: height 0.3s ease;
 }
 
 .navbar-custom .nav-link {
-    color: #e0bb35;
+    color: $color-gold;
     font-size: 24px;
     padding: 0 2rem;
     transition: all 0.3s ease;
@@ -31,12 +58,33 @@ body {
 
 .navbar-custom .nav-link:hover,
 .navbar-custom .nav-link:focus {
-    color: #efd781;
+    color: $color-gold-light;
+}
+
+.navbar-toggler {
+    background-color: transparent;
+}
+
+.navbar-toggler {
+    flex-shrink: 0;
+}
+
+.custom-divider {
+    border: none;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.6), 
+        transparent
+    );
+    margin: 0.75rem 0;
 }
 
 .btn-custom {
-    background-color: #e0bb35;
-    color: #0F0F0F !important;
+    background-color: $color-gold;
+    color: $color-bg-dark !important;
     border: none;
     font-size: 18px;
     padding: 0.5rem 1.5rem;
@@ -45,12 +93,37 @@ body {
 }
 
 .btn-custom:hover {
-    background-color: #efd781;
+    background-color: $color-gold-light;
 }
 
-@media (max-width: 1199.98px) {
+// Dropdown for nav
+.custom-arrow-toggle {
+    border: none;
+    background: none;
+    padding: 0;
+    line-height: 1;
+    text-decoration: none;
+    color: $color-gold;
+}
+
+.custom-arrow-toggle i {
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+    color: inherit;
+}
+
+.custom-arrow-toggle:hover {
+    color:$color-gold-light
+}
+
+.custom-arrow-toggle[aria-expanded="true"] i {
+    transform: rotate(180deg);
+}
+
+@include respond(xl) {
     .navbar-logo {
-        height: 120px;
+        height: 5rem;
     }
     .navbar-custom .nav-link {
         font-size: 20px;
@@ -62,13 +135,12 @@ body {
     }
 }
 
-@media (max-width: 991.98px) {
+@include respond(lg) {
     .navbar-custom {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding: 0.75rem 1rem;
     }
     .navbar-logo {
-        height: 90px;
+        height: 4rem;
     }
     .navbar-custom .nav-link {
         font-size: 16px;
@@ -79,6 +151,9 @@ body {
         padding: 0.35rem 0.8rem;
     }
 }
+
+
+
 
 // ABOUT
 html {
@@ -99,7 +174,7 @@ html {
 }
 
 .text-gold {
-    color: #e0bb35;
+    color: $color-gold;
 }
 
 .custom-card {
@@ -129,11 +204,7 @@ html {
 }
 
 .product-bg-overlay {
-    background-color: #0f0f0f89;
-}
-
-.text-gold {
-    color: #e0bb35;
+    background-color: $color-overlay;
 }
 
 .product-card-img {
@@ -152,11 +223,7 @@ html {
 }
 
 .project-bg-overlay {
-    background-color: #0f0f0f89;
-}
-
-.text-gold {
-    color: #e0bb35;
+    background-color: $color-overlay;
 }
 
 .project-card-img {
@@ -193,29 +260,25 @@ html {
     background-color: rgba(15, 15, 15, 0.7);
 }
 
-.text-gold {
-    color: #e0bb35;
-}
-
 .card-translucent {
     background-color: rgba(255, 255, 255, 0.95);
 }
 
 .service-item {
-    border-left: 4px solid #e0bb35;
+    border-left: 4px solid $color-gold;
     padding-left: 1.5rem;
 }
 
 // FOOTER
 .site-footer {
     padding: 60px 0px;
-    background-color: #0F0F0F;
+    background-color: $color-bg-dark;
 
-    @media (max-width: 1100px) {
+    @include respond(xl) {
         padding-left: 30px;
         padding-right: 30px;
     }
-    @media (max-width: 650px) {
+    @include respond(md) {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -224,10 +287,10 @@ html {
 .footer-logo {
     height: 120px;
 
-    @media (max-width: 900px) {
+    @include respond(xl) {
         height: 80px;
     }
-    @media (max-width: 650px) {
+    @include respond(md) {
         height: 150px;
         display: block;
         margin-left: auto;
@@ -242,7 +305,7 @@ html {
     height: 40px;
     width: 40px;
     background-color: white;
-    color: #0F0F0F;
+    color: $color-bg-dark;
     border-radius: 50%;
     transition: transform 0.2s ease-in-out;
 
@@ -252,18 +315,18 @@ html {
 }
 
 .btn-submit {
-    background-color: #ffffff;
-    color: #0F0F0F;
+    background-color: $color-white;
+    color: $color-bg-dark;
     padding: 0.75rem 1.25rem;
     width: 160px;
     transition: background-color 0.2s ease;
 
     &:hover {
         background-color: #bbbbbb;
-        color: #0F0F0F;
+        color: $color-bg-dark;
     }
 
-    @media (max-width: 650px) {
+    @include respond(md) {
         width: 70%;
         display: block;
         margin-left: auto;
@@ -272,13 +335,13 @@ html {
 }
 
 .copyright {
-    background-color: #0F0F0F;
+    background-color: $color-bg-dark;
 }
 
 .footer-copyright {
-    background-color: #0F0F0F;
+    background-color: $color-bg-dark;
     font-size: 16px;
-    @media (max-width: 650px) {
+    @include respond(md) {
         font-size: 12px;
     }
 }
