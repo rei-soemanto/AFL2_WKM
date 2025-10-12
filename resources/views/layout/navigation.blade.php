@@ -15,7 +15,7 @@
         </ul>
 
         <!-- Contact -->
-        <a href="#contact" class="btn btn-custom fw-bold text-nowrap mx-5">
+        <a href="#contact" class="btn btn-custom fw-bold text-nowrap mx-2 mx-lg-5">
             Contact Us
         </a>
     </div>
