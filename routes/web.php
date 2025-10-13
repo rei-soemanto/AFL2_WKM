@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-use App\Models\Product;
 
 Route::get('/', function () {
     return view('about');
 });
 
+// Products
 Route::get('/product', [PageController::class, 'products'])->name('product');
 Route::get('/product/{id}', [PageController::class, 'productDetail'])->name('product.detail');
 
