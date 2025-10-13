@@ -17,10 +17,8 @@ class PageController extends Controller
      */
     public function products(): View
     {
-        // Eager load relationships to prevent N+1 queries
         $products = Product::with(['brand', 'category'])->get();
 
-        // Group the products by their brand name for the view
         $product_data = $products->groupBy('brand.name');
 
         return view('product', ['product_data' => $product_data]);
@@ -31,7 +29,6 @@ class PageController extends Controller
      */
     public function productDetail(string $id): View
     {
-        // Find the product by its ID or fail with a 404 error
         $product = Product::with(['brand', 'category'])->findOrFail($id);
 
         return view('product_detail', ['product' => $product]);
@@ -43,13 +40,11 @@ class PageController extends Controller
     public function projects(): View
     {
         $project_data = [];
-        // Get all categories that have at least one project
         $categories = ProjectCategory::whereHas('projects')->with(['projects.images'])->get();
 
         foreach ($categories as $category) {
             $projects_in_category = [];
             foreach ($category->projects as $project) {
-                // Find the first image, ordered by the 'upload_order' column
                 $first_image = $project->images->sortBy('upload_order')->first();
 
                 $projects_in_category[] = [
@@ -72,10 +67,8 @@ class PageController extends Controller
     {
         $project = Project::with(['categories', 'images'])->findOrFail($id);
 
-        // The view expects a comma-separated string of category names
         $project->category_names = $project->categories->pluck('name')->join(', ');
 
-        // The view expects the images to be sorted
         $project_images = $project->images->sortBy('upload_order');
 
         return view('project_detail', [
@@ -89,15 +82,11 @@ class PageController extends Controller
      */
     public function services(): View
     {
-        // Get categories and their associated services
         $service_categories = ServiceCategory::with('services')->get();
         
-        // The view expects a specific array structure, so we build it
         $service_data = $service_categories->map(function ($category) {
             return [
                 'category_name' => $category->name,
-                // The 'category_description' field from the view doesn't exist in our table,
-                // so we can leave it empty or add a default description.
                 'category_description' => 'Services related to ' . $category->name,
                 'services' => $category->services->map(function ($service) {
                     return [
@@ -117,7 +106,6 @@ class PageController extends Controller
      */
     public function serviceDetail(string $id): View
     {
-        // Find the service and its category
         $service = Service::with('category')->findOrFail($id);
 
         return view('service_detail', ['service' => $service]);

@@ -32,9 +32,9 @@ class ProjectCategory extends Model
     {
         return $this->belongsToMany(
             Project::class,
-            'project_category_assignments', // The pivot table name
-            'category_id',                  // Foreign key on pivot table for ProjectCategory
-            'project_id'                    // Foreign key on pivot table for Project
+            'project_category_assignments',
+            'category_id',
+            'project_id'
         );
     }
 }
