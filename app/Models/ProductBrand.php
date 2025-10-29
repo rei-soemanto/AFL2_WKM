@@ -9,25 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ProductBrand extends Model
 {
     use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
     ];
 
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
     public $timestamps = false;
 
-    /**
-     * Get the products for the brand.
-     */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'brand_id');

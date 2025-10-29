@@ -8,32 +8,18 @@
 
         <!-- Nav links (MD - XL) -->
         <ul class="navbar-nav d-none fw-bold d-md-flex flex-row align-items-center">
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/') }}">About</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/project') }}">Portfolio</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
+            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin') }}">Dashboard</a></li>
+            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.project') }}">Portfolio</a></li>
+            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.product') }}">Products</a></li>
+            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.service') }}">Services</a></li>
         </ul>
-
-        @guest
-            <a href="{{ route('login') }}" class="btn btn-custom fw-bold text-nowrap mx-2 mx-lg-5">
-                Login
-            </a>
-        @endguest
 
         @auth
             <div class="nav-item dropdown mx-2 mx-lg-5">
                 <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 24px; color: #e0bb35;">
-                    Hello, {{ Auth::user()->name }}
+                    Hello admin, {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    
-                    @if(Auth::user()->role == 'admin')
-                        <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Panel</a></li>
-                    @else
-                        <li><a class="dropdown-item" href="{{ url('/') }}">Dashboard</a></li>
-                    @endif
-
-                    <li><hr class="dropdown-divider"></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -72,16 +58,16 @@
                     align-items-center justify-content-center 
                     mb-0 mx-auto w-100 custom-nav-xs">
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('/') }}">About</a>
+                    <a class="nav-link" href="{{ url('/admin') }}">Dashboard</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('/project') }}">Portfolio</a>
+                    <a class="nav-link" href="{{ url('/admin.project') }}">Portfolio</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('/product') }}">Products</a>
+                    <a class="nav-link" href="{{ url('/admin.product') }}">Products</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('/service') }}">Services</a>
+                    <a class="nav-link" href="{{ url('/admin.service') }}">Services</a>
                 </li>
             </ul>
         </div>

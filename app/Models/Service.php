@@ -9,11 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Service extends Model
 {
     use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'category_id',
         'name',
@@ -22,11 +17,13 @@ class Service extends Model
 
     public $timestamps = false;
 
-    /**
-     * Get the category that owns the service.
-     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(ServiceCategory::class, 'category_id');
+    }
+    
+    public function lastUpdatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'last_updated_by');
     }
 }

@@ -9,11 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'brand_id',
         'category_id',
@@ -25,19 +20,18 @@ class Product extends Model
 
     public $timestamps = false;
 
-    /**
-     * Get the brand that owns the product.
-     */
     public function brand(): BelongsTo
     {
         return $this->belongsTo(ProductBrand::class, 'brand_id');
     }
 
-    /**
-     * Get the category that owns the product.
-     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(ProductCategory::class, 'category_id');
+    }
+
+    public function lastUpdatedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'last_updated_by');
     }
 }

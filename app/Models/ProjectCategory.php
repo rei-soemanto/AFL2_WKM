@@ -9,25 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class ProjectCategory extends Model
 {
     use HasFactory;
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
     ];
 
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
     public $timestamps = false;
 
-    /**
-     * The projects that belong to the category.
-     */
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(
