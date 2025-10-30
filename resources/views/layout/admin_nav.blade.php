@@ -9,6 +9,7 @@
         <!-- Nav links (MD - XL) -->
         <ul class="navbar-nav d-none fw-bold d-md-flex flex-row align-items-center">
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin') }}">Dashboard</a></li>
+            <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.user') }}">User</a></li>
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.project') }}">Portfolio</a></li>
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.product') }}">Products</a></li>
             <li class="nav-item mx-1"><a class="nav-link" href="{{ url('/admin.service') }}">Services</a></li>
@@ -59,6 +60,9 @@
                     mb-0 mx-auto w-100 custom-nav-xs">
                 <li class="nav-item mx-sm-1 py-2">
                     <a class="nav-link" href="{{ url('/admin') }}">Dashboard</a>
+                </li>
+                <li class="nav-item mx-sm-1 py-2">
+                    <a class="nav-link" href="{{ url('/admin.user') }}">User</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
                     <a class="nav-link" href="{{ url('/admin.project') }}">Portfolio</a>

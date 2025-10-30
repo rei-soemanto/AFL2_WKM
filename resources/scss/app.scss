@@ -172,8 +172,58 @@ body {
     }
 }
 
+// LOGIN
 
+.login-wrapper {
+    background-size: cover;
+    background-position: center;
+}
 
+.login-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-card {
+    background-color: rgba(15, 15, 15, 0.9);
+    border: none;
+    width: 100%;
+}
+
+.login-logo {
+    height: 6rem;
+}
+
+.form-control-dark {
+    background-color: #1a202c;
+    border-color: #4a5568;
+    color: #ffffff;
+}
+.form-control-dark:focus {
+    background-color: #1a202c;
+    color: #ffffff;
+    border-color: #e0bb35;
+    box-shadow: 0 0 0 0.25rem rgba(224, 187, 53, 0.25);
+}
+.form-control-dark::placeholder {
+    color: #a0aec0;
+}
+
+.nav-tabs .nav-link {
+    color: #a0aec0; 
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tabs .nav-link.active {
+    color: #e0bb35; 
+    background-color: transparent;
+    border-bottom: 2px solid #e0bb35;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+    border-bottom: 2px solid #a0aec0;
+}
 
 // ABOUT
 html {
