@@ -27,7 +27,7 @@
                 
                 <div class="row g-5">
                     <div class="col-lg-6">
-                        <img src="{{ asset($product->image ?? 'https://placehold.co/600x400/CCCCCC/FFFFFF?text=No+Image') }}" alt="{{ $product->name }}" class="img-fluid rounded-3 shadow-lg">
+                        <img src="{{ asset('storage/' . $product->image ?? 'https://placehold.co/...') }}" alt="{{ $product->name }}" class="img-fluid rounded-3 shadow-lg">
                     </div>
 
                     <div class="col-lg-6">
@@ -36,7 +36,7 @@
                             {!! nl2br(e($product->description)) !!}
                         </div>
                         @if ($product->pdf_path)
-                            <a href="{{ asset($product->pdf_path) }}" download class="btn btn-dark btn-lg fw-bold">
+                            <a href="{{ asset('storage/' . $product->pdf_path) }}" download class="btn btn-dark btn-lg fw-bold">
                                 Download PDF
                             </a>
                         @endif

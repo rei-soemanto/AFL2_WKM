@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes();
 
 // Public
 Route::get('/', function () {
@@ -27,6 +30,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     // Admin Dashboard
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+    // User Interest Route
+    Route::get('/users', [AdminController::class, 'listUsers'])->name('admin.users.list');
+
     // Product Routes
     Route::get('/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
     Route::get('/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');
@@ -50,5 +56,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/projects/{id}/edit', [AdminController::class, 'editProject'])->name('admin.projects.edit');
     Route::put('/projects/{id}', [AdminController::class, 'updateProject'])->name('admin.projects.update');
     Route::delete('/projects/{id}', [AdminController::class, 'destroyProject'])->name('admin.projects.destroy');
-
 });

@@ -18,6 +18,7 @@ use App\Models\ServiceCategory;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\ProjectImage;
+use App\Models\User;
 
 class AdminController extends Controller
 {
@@ -69,8 +70,8 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'brand_id' => 'required|integer|exists:product_brands,brand_id',
-            'category_id' => 'required|integer|exists:product_categories,category_id',
+            'brand_id' => 'required|integer|exists:product_brands,id',
+            'category_id' => 'required|integer|exists:product_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'pdf_path' => 'nullable|file|mimes:pdf|max:5120', // 5MB Max
@@ -113,8 +114,8 @@ class AdminController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'brand_id' => 'required|integer|exists:product_brands,brand_id',
-            'category_id' => 'required|integer|exists:product_categories,category_id',
+            'brand_id' => 'required|integer|exists:product_brands,id',
+            'category_id' => 'required|integer|exists:product_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'pdf_path' => 'nullable|file|mimes:pdf|max:5120',
@@ -195,7 +196,7 @@ class AdminController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:service_categories,category_id',
+            'category_id' => 'required|integer|exists:service_categories,id',
             'description' => 'nullable|string',
         ]);
         
@@ -225,7 +226,7 @@ class AdminController extends Controller
         $service = Service::findOrFail($id);
         $data = $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:service_categories,category_id',
+            'category_id' => 'required|integer|exists:service_categories,id',
             'description' => 'nullable|string',
         ]);
 
@@ -287,7 +288,7 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_ids' => 'required|array|max:4',
-            'category_ids.*' => 'integer|exists:project_categories,category_id',
+            'category_ids.*' => 'integer|exists:project_categories,id',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
@@ -338,11 +339,11 @@ class AdminController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'category_ids' => 'required|array|max:4',
-            'category_ids.*' => 'integer|exists:project_categories,category_id',
+            'category_ids.*' => 'integer|exists:project_categories,id',
             'images' => 'nullable|array',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'delete_images' => 'nullable|array',
-            'delete_images.*' => 'integer|exists:project_images,image_id',
+            'delete_images.*' => 'integer|exists:project_images,id',
         ]);
         
         $data['last_updated_by'] = Auth::id();
@@ -397,5 +398,15 @@ class AdminController extends Controller
         $project->delete();
 
         return redirect()->route('admin.projects.list')->with('message', 'Project deleted successfully.');
+    }
+
+    public function listUsers(): View
+    {
+        $users = User::with(['interested_products', 'interested_services'])
+                    ->where('role', '!=', 'admin') // Don't list other admins
+                    ->latest()
+                    ->get();
+
+        return view('admin.manage_user', ['users' => $users]);
     }
 }

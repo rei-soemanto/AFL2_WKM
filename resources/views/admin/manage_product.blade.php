@@ -29,7 +29,7 @@
                                     <label for="brand_id" class="form-label fw-bold">Brand</label>
                                     <select id="brand_id" name="brand_id" class="form-select" required>
                                         <option value="">Select a brand</option>
-                                        @foreach ($brands as $brand) <option value="{{ $brand->brand_id }}" 
+                                        @foreach ($brands as $brand) <option value="{{ $brand->id }}" 
                                                 @selected(old('brand_id', $product_to_edit['brand_id'] ?? '') == $brand->brand_id)>
                                                 {{ $brand->name }}
                                             </option>
@@ -40,7 +40,7 @@
                                     <label for="category_id" class="form-label fw-bold">Category</label>
                                     <select id="category_id" name="category_id" class="form-select" required>
                                         <option value="">Select a category</option>
-                                        @foreach ($categories as $category) <option value="{{ $category->category_id }}" 
+                                        @foreach ($categories as $category) <option value="{{ $category->id }}" 
                                                 @selected(old('category_id', $product_to_edit['category_id'] ?? '') == $category->category_id)>
                                                 {{ $category->name }}
                                             </option>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="product_pdf" class="form-label fw-bold">Product PDF</label>
-                                    <input type="file" id="product_pdf" name="product_pdf" class="form-control">
+                                    <input type="file" id="product_pdf" name="pdf_path" class="form-control">
                                     @if (!empty($product_to_edit['pdf_path']))
                                         <small class="text-muted mt-2 d-block">Current PDF: {{ basename($product_to_edit['pdf_path']) }}</small>
                                         <input type="hidden" name="existing_pdf" value="{{ $product_to_edit['pdf_path'] }}">

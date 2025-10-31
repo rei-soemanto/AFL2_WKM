@@ -23,7 +23,7 @@
                                             <div class="bg-custom-card-dark rounded-3 shadow-lg p-5">
                                                 <div class="row align-items-center g-5">
                                                     <div class="col-md-6">
-                                                        <img src="{{ $item['image'] ?? 'https://placehold.co/600x400/212529/FFFFFF?text=No+Image' }}" alt="{{ $item['name'] }}" class="img-fluid rounded-3 project-card-img">
+                                                        <img src="{{ asset('storage/' . $item['image']) ?? 'https://placehold.co/...' }}" alt="{{ $item['name'] }}" class="img-fluid rounded-3 project-card-img">
                                                     </div>
                                                     <div class="col-md-6 text-white">
                                                         <h3 class="h2 fw-bold mb-3 text-gold">{{ $item['name'] }}</h3>

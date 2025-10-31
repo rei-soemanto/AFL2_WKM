@@ -29,7 +29,7 @@
                                 <select id="category_id" name="category_id" class="form-select" required>
                                     <option value="">Select a category</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category['category_id'] }}"
+                                        <option value="{{ $category->id }}"
                                             @selected(old('category_id', $service_to_edit['category_id'] ?? '') == $category['category_id'])>
                                             {{ $category['name'] }}
                                         </option>
@@ -40,18 +40,6 @@
                             <div class="mb-3">
                                 <label for="description" class="form-label fw-bold">Description</label>
                                 <textarea id="description" name="description" rows="5" class="form-control">{{ old('description', $service_to_edit['description'] ?? '') }}</textarea>
-                            </div>
-
-                            <div class="mb-4">
-                                <label for="image" class="form-label fw-bold">Service Image</label>
-                                <input type="file" id="image" name="image" class="form-control">
-                                @if (!empty($service_to_edit['image']))
-                                    <div class="mt-2">
-                                        <img src="{{ asset(str_replace('../', '', $service_to_edit['image'])) }}" alt="Current Image" class="img-thumbnail form-thumbnail rounded">
-                                        <small class="text-muted ms-2">Current image: {{ $service_to_edit['image'] }}</small>
-                                        <input type="hidden" name="existing_image" value="{{ $service_to_edit['image'] }}">
-                                    </div>
-                                @endif
                             </div>
 
                             <div class="d-flex align-items-center gap-3">

@@ -37,7 +37,7 @@
                                 <div class="carousel-inner rounded">
                                     @foreach ($project_images as $image)
                                         <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                            <img src="{{ asset($image->image_path) }}" class="d-block w-100" style="aspect-ratio: 4/3; object-fit: cover;" alt="{{ $project->name }}">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" class="d-block w-100" style="aspect-ratio: 4/3; object-fit: cover;" alt="{{ $project->name }}">
                                         </div>
                                     @endforeach
                                 </div>

@@ -30,8 +30,8 @@
                                     @foreach ($categories as $category)
                                     <div class="col">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="category_{{ $category['category_id'] }}" name="category_ids[]" value="{{ $category['category_id'] }}"
-                                                @checked(in_array($category['category_id'], $project_categories_assigned ?? []))>
+                                            <input class="form-check-input" type="checkbox" id="category_{{ $category->id }}" name="category_ids[]" value="{{ $category['category_id'] }}"
+                                                @checked(in_array($category->id, $project_categories_assigned ?? []))>
                                             <label class="form-check-label" for="category_{{ $category['category_id'] }}">{{ $category['name'] }}</label>
                                         </div>
                                     </div>
@@ -56,7 +56,7 @@
                                     @foreach($project_images as $image)
                                     <div class="col">
                                         <div class="position-relative">
-                                            <img src="{{ asset(str_replace('../', '', $image['image_path'])) }}" alt="Current Image" class="img-fluid current-project-img rounded">
+                                            <img src="{{ asset('storage/' . $image['image_path']) }}" alt="Current Image" class="img-fluid current-project-img rounded">
                                             <div class="form-check position-absolute top-0 end-0 bg-white-75 p-1 rounded me-1 mt-1">
                                                 <input class="form-check-input" type="checkbox" name="delete_images[]" value="{{ $image['image_id'] }}" id="delete_img_{{ $image['image_id'] }}">
                                                 <label class="form-check-label text-danger small fw-bold" for="delete_img_{{ $image['image_id'] }}">Delete</label>
@@ -109,7 +109,7 @@
                                     <tr>
                                         <td class="p-2">
                                             @if ($project['thumbnail'])
-                                                <img src="{{ asset(str_replace('../', '', $project['thumbnail'])) }}" alt="Thumbnail" class="table-thumbnail rounded">
+                                                <img src="{{ asset('storage/' . $project['thumbnail']) }}" alt="Thumbnail" class="table-thumbnail rounded">
                                             @endif
                                         </td>
                                         <td class="p-3 fw-bold">{{ $project['name'] }}</td>
