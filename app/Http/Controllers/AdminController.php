@@ -29,6 +29,12 @@ class AdminController extends Controller
     {
         return view('admin.admin_dashboard', [
             'admin_username' => Auth::user()->name,
+            'user_count' => User::where('role', '!=', 'admin')
+                    ->where(function ($query) {
+                        $query->has('interested_products')
+                        ->orWhereHas('interested_services');
+                    })
+                    ->count(),
             'product_count' => Product::count(),
             'service_count' => Service::count(),
             'project_count' => Project::count(),

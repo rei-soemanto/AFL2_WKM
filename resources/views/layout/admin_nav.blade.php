@@ -16,11 +16,19 @@
         </ul>
 
         @auth
-            <div class="nav-item dropdown mx-2 mx-lg-5">
+            <div class="nav-item dropdown mx-2 mx-lg-2">
                 <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 24px; color: #e0bb35;">
-                    Hello admin, {{ Auth::user()->name }}
+                    Admin, {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                    @if(Auth::user()->role == 'admin')
+                        <li><a class="dropdown-item" href="{{ url('/') }}">User View</a></li>
+                    @else
+                        <li><a class="dropdown-item" href="{{ url('/') }}">Dashboard</a></li>
+                    @endif
+
+                    <li><hr class="dropdown-divider"></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

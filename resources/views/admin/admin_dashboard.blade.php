@@ -8,7 +8,19 @@
             <h1 class="display-4 fw-bold text-center mb-4 text-white">Admin Dashboard</h1>
             <p class="text-center text-white-50 mb-5 fs-5">Welcome, {{ $admin_username }}!</p>
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+
+                <div class="col">
+                    <div class="card card-translucent shadow-lg h-100">
+                        <div class="card-body p-4">
+                            <h2 class="h5 card-title fw-bold text-dark">Total User Interest</h2>
+                            <div class="mt-4 d-flex justify-content-between align-items-center">
+                                <span class="h2 fw-bold text-dark">{{ $user_count }}</span>
+                                <a href="{{ url('/admin/users') }}" class="btn btn-gold fw-bold">Manage</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col">
                     <div class="card card-translucent shadow-lg h-100">
