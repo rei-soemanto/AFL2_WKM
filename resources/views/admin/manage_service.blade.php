@@ -87,7 +87,7 @@
                                         </td>
                                         <td class="p-3 text-center text-nowrap">
                                             <a href="{{ url('/admin/services/' . $service['service_id'] . '/edit') }}" class="btn btn-warning btn-sm fw-semibold text-dark">Edit</a>
-                                            <form action="{{ url('/admin/services/'' . $service['service_id']) }}" method="POST" class="d-inline ms-2">
+                                            <form action="{{ url('/admin/services/' . $service['service_id']) }}" method="POST" class="d-inline ms-2">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm fw-semibold" onclick="return confirm('Are you sure you want to delete this service?');">Delete</button>
