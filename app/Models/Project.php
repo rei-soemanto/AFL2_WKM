@@ -14,14 +14,13 @@ class Project extends Model
     protected $fillable = [
         'name',
         'description',
+        'last_updated_by'
     ];
 
     public function images(): HasMany
     {
         return $this->hasMany(ProjectImage::class, 'project_id');
     }
-
-    public $timestamps = false;
 
     public function categories(): BelongsToMany
     {

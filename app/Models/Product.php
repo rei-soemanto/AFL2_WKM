@@ -16,9 +16,8 @@ class Product extends Model
         'description',
         'image',
         'pdf_path',
+        'last_updated_by'
     ];
-
-    public $timestamps = false;
 
     public function brand(): BelongsTo
     {

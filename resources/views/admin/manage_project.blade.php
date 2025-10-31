@@ -11,7 +11,7 @@
                 <h1 class="display-5 fw-bold text-white mb-4">{{ $action === 'edit' ? 'Edit' : 'Add New' }} Project</h1>
                 <div class="card card-translucent shadow-lg p-4">
                     <div class="card-body">
-                        <form action="{{ $action === 'edit' ? url('/admin/projects/' . $project_to_edit['project_id']) : url('/admin/projects') }}" method="POST" enctype="multipart/form-data" id="projectForm">
+                        <form action="{{ $action === 'edit' ? route('admin.projects.update', $product_to_edit->id) : route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if ($action === 'edit')
                                 @method('PUT')
@@ -21,7 +21,7 @@
                             
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Project Name</label>
-                                <input type="text" id="name" name="name" value="{{ old('name', $project_to_edit['name'] ?? '') }}" class="form-control" required>
+                                <input type="text" id="name" name="name" value="{{ old('name', $project_to_edit->name ?? '') }}" class="form-control" required>
                             </div>
                             
                             <div class="mb-3">
@@ -30,9 +30,9 @@
                                     @foreach ($categories as $category)
                                     <div class="col">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="category_{{ $category->id }}" name="category_ids[]" value="{{ $category['category_id'] }}"
+                                            <input class="form-check-input" type="checkbox" id="category_{{ $category->id }}" name="category_ids[]" value="{{ $category->id }}"
                                                 @checked(in_array($category->id, $project_categories_assigned ?? []))>
-                                            <label class="form-check-label" for="category_{{ $category['category_id'] }}">{{ $category['name'] }}</label>
+                                            <label class="form-check-label" for="category_{{ $category->id }}">{{ $category->name }}</label>
                                         </div>
                                     </div>
                                     @endforeach
@@ -41,7 +41,7 @@
 
                             <div class="mb-3">
                                 <label for="description" class="form-label fw-bold">Description</label>
-                                <textarea id="description" name="description" rows="5" class="form-control">{{ old('description', $project_to_edit['description'] ?? '') }}</textarea>
+                                <textarea id="description" name="description" rows="5" class="form-control">{{ old('description', $project_to_edit->description ?? '') }}</textarea>
                             </div>
 
                             <div class="mb-3">
@@ -56,10 +56,10 @@
                                     @foreach($project_images as $image)
                                     <div class="col">
                                         <div class="position-relative">
-                                            <img src="{{ asset('storage/' . $image['image_path']) }}" alt="Current Image" class="img-fluid current-project-img rounded">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="Current Image" class="img-fluid current-project-img rounded">
                                             <div class="form-check position-absolute top-0 end-0 bg-white-75 p-1 rounded me-1 mt-1">
-                                                <input class="form-check-input" type="checkbox" name="delete_images[]" value="{{ $image['image_id'] }}" id="delete_img_{{ $image['image_id'] }}">
-                                                <label class="form-check-label text-danger small fw-bold" for="delete_img_{{ $image['image_id'] }}">Delete</label>
+                                                <input class="form-check-input" type="checkbox" name="delete_images[]" value="{{ $image->id }}" id="delete_img_{{ $image->id }}">
+                                                <label class="form-check-label text-danger small fw-bold" for="delete_img_{{ $image->id }}">Delete</label>
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                 <button type="submit" class="btn btn-purple btn-lg fw-bold px-4">
                                     {{ $action === 'edit' ? 'Update' : 'Save' }} Project
                                 </button>
-                                <a href="{{ url('/admin/projects') }}" class="text-secondary">Cancel</a>
+                                <a href="{{ route('admin.projects.list') }}" class="text-secondary">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -82,7 +82,7 @@
                 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1 class="display-5 fw-bold text-white">Manage Projects</h1>
-                    <a href="{{ url('/admin/projects/create') }}" class="btn btn-purple btn-lg fw-bold">Add New Project</a>
+                    <a href="{{ route('admin.projects.create') }}" class="btn btn-purple btn-lg fw-bold">Add New Project</a>
                 </div>
 
                 @if (session('message'))
@@ -108,18 +108,18 @@
                                 @forelse ($projects as $project)
                                     <tr>
                                         <td class="p-2">
-                                            @if ($project['thumbnail'])
-                                                <img src="{{ asset('storage/' . $project['thumbnail']) }}" alt="Thumbnail" class="table-thumbnail rounded">
+                                            @if ($project->thumbnail)
+                                                <img src="{{ asset('storage/' . $project->thumbnail) }}" alt="Thumbnail" class="table-thumbnail rounded">
                                             @endif
                                         </td>
-                                        <td class="p-3 fw-bold">{{ $project['name'] }}</td>
-                                        <td class="p-3 text-secondary small">{{ $project['category_names'] ?? 'N/A' }}</td>
+                                        <td class="p-3 fw-bold">{{ $project->name }}</td>
+                                        <td class="p-3 text-secondary small">{{ $project->category_names ?? 'N/A' }}</td>
                                         <td class="p-3 text-secondary d-none d-md-table-cell">
-                                            {{ \Carbon\Carbon::parse($project['updated_at'])->format('M j, Y, g:i a') }}
+                                            {{ $project->lastUpdatedBy->name ?? 'N/A' }} | {{ $project->updated_at->format('M j, Y, g:i a') }}
                                         </td>
                                         <td class="p-3 text-center text-nowrap">
-                                            <a href="{{ url('/admin/projects/' . $project['project_id'] . '/edit') }}" class="btn btn-warning btn-sm fw-semibold text-dark">Edit</a>
-                                            <form action="{{ url('/admin/projects/' . $project['project_id']) }}" method="POST" class="d-inline ms-2">
+                                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-warning btn-sm fw-semibold text-dark">Edit</a>
+                                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST" class="d-inline ms-2">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm fw-semibold" onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>

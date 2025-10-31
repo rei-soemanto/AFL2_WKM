@@ -13,9 +13,8 @@ class Service extends Model
         'category_id',
         'name',
         'description',
+        'last_updated_by'
     ];
-
-    public $timestamps = false;
 
     public function category(): BelongsTo
     {

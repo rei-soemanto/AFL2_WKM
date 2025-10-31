@@ -38,7 +38,7 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'last_updated_by');
     }
 
-    public function solutions(): HasMany
+    public function services(): HasMany
     {
         return $this->hasMany(Service::class, 'last_updated_by');
     }

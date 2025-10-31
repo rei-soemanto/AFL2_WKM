@@ -52,7 +52,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_product', [
             'action' => 'list',
-            'products' => Product::with(['brand', 'category'])->latest()->get(),
+            'products' => Product::with(['brand', 'category', 'lastUpdatedBy'])->latest('updated_at')->get(),
         ]);
     }
 
@@ -180,7 +180,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_service', [
             'action' => 'list',
-            'services' => Service::with('category')->latest()->get(),
+            'services' => Service::with(['category', 'lastUpdatedBy'])->latest('updated_at')->get(),
         ]);
     }
 
@@ -262,11 +262,11 @@ class AdminController extends Controller
      */
     public function listProjects(): View
     {
-        $projects = Project::with(['categories', 'images'])->latest()->get()->map(function($project) {
-            $project->category_names = $project->categories->pluck('name')->join(', ');
-            $project->thumbnail = $project->images->sortBy('upload_order')->first()->image_path ?? null;
-            return $project;
-        });
+        $projects = Project::with(['categories', 'images', 'lastUpdatedBy'])->latest('updated_at')->get()->map(function($project) {
+        $project->category_names = $project->categories->pluck('name')->join(', ');
+        $project->thumbnail = $project->images->sortBy('upload_order')->first()->image_path ?? null;
+        return $project;
+    });
 
         return view('admin.manage_project', [
             'action' => 'list',
