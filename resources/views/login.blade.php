@@ -63,11 +63,27 @@
                                 <label for="reg_password" class="form-label text-white fw-bold">Password</label>
                                 <input type="password" id="reg_password" name="password" class="form-control form-control-dark" required>
                             </div>
+                            <div class="mb-4">
+                                <label for="password_confirmation" class="form-label text-white fw-bold">Confirm Password</label>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-dark" required>
+                            </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-gold btn-lg fw-bold">Register</button>
                             </div>
                         </form>
                     </div>
+
+                    @csrf
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                 </div>
             </div>

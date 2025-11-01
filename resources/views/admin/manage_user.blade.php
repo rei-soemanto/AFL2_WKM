@@ -3,7 +3,7 @@
 @section('name', 'Manage Users')
 @section('content')
 <main class="main-background" style="background-image: url('{{ asset('img/aboutpagebg.jpg') }}')">
-    <div class="bg-overlay-dark min-vh-100 py-5">
+    <div class="bg-overlay min-vh-100 py-5">
         <div class="container-xl py-5">
             
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -24,8 +24,8 @@
                             <tr>
                                 <th scope="col" class="p-3">User Name</th>
                                 <th scope="col" class="p-3">Email</th>
-                                <th scope="col" class="p-3 text-center">Product Interest</th>
-                                <th scope="col" class="p-3 text-center">Service Interest</th>
+                                <th scope="col" class="p-3">Interested Products</th>
+                                <th scope="col" class="p-3">Interested Services</th>
                                 <th scope="col" class="p-3 text-center">Actions</th>
                             </tr>
                         </thead>
@@ -34,18 +34,26 @@
                                 <tr>
                                     <td class="p-3 fw-bold">{{ $user->name }}</td>
                                     <td class="p-3 text-secondary">{{ $user->email }}</td>
-                                    <td class="p-3 text-center">
+                                    <td class="p-3">
                                         @if ($user->interested_products->count() > 0)
-                                            <span class="badge bg-success">Yes</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                @foreach ($user->interested_products as $product)
+                                                    <li>{{ $product->name }}</li>
+                                                @endforeach
+                                            </ul>
                                         @else
-                                            <span class="badge bg-secondary">No</span>
+                                            <span class="text-secondary small">None</span>
                                         @endif
                                     </td>
-                                    <td class="p-3 text-center">
+                                    <td class="p-3">
                                         @if ($user->interested_services->count() > 0)
-                                            <span class="badge bg-success">Yes</span>
+                                            <ul class="list-unstyled mb-0 small">
+                                                @foreach ($user->interested_services as $service)
+                                                    <li>{{ $service->name }}</li>
+                                                @endforeach
+                                            </ul>
                                         @else
-                                            <span class="badge bg-secondary">No</span>
+                                            <span class="text-secondary small">None</span>
                                         @endif
                                     </td>
                                     <td class="p-3 text-center text-nowrap">

@@ -358,7 +358,9 @@ class AdminController extends Controller
     // Show list of all user has interest
     public function listUsers(): View
     {
-        $users = User::with(['interested_products', 'interested_services'])->where('role', '!=', 'admin')->latest()->get();
+        $users = User::where('role', '!=', 'admin')->where(function ($query) {
+            $query->has('interested_products')->orWhereHas('interested_services');
+        })->with(['interested_products', 'interested_services'])->latest()->get();
 
         return view('admin.manage_user', ['users' => $users]);
     }

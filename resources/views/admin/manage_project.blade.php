@@ -3,7 +3,7 @@
 @section('name', 'Manage Projects')
 @section('content')
 <main class="main-background" style="background-image: url('{{ asset('img/aboutpagebg.jpg') }}')">
-    <div class="bg-overlay-dark min-vh-100 py-5">
+    <div class="bg-overlay min-vh-100 py-5">
         <div class="container-xl py-5">
             
             @if ($action === 'add' || $action === 'edit')

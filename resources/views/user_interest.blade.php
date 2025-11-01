@@ -3,7 +3,7 @@
 @section('name', 'My Interest List')
 @section('content')
 <main class="main-background" style="background-image: url('{{ asset('img/aboutpagebg.jpg') }}')">
-    <div class="bg-overlay-dark min-vh-100 py-5">
+    <div class="bg-overlay min-vh-100 py-5">
         <div class="container-xl py-5">
             
             <h1 class="display-4 fw-bold text-center mb-5 text-white">My <span class="text-gold">Interest List</span></h1>
