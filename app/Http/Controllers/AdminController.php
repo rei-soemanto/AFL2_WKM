@@ -25,12 +25,10 @@ class AdminController extends Controller
     {
         return view('admin.admin_dashboard', [
             'admin_username' => Auth::user()->name,
-            'user_count' => User::where('role', '!=', 'admin')
-                    ->where(function ($query) {
-                        $query->has('interested_products')
-                        ->orWhereHas('interested_services');
-                    })
-                    ->count(),
+            'user_count' => User::where('role', '!=', 'admin')->where(function ($query) {
+                $query->has('interested_products')
+                ->orWhereHas('interested_services');
+            })->count(),
             'product_count' => Product::count(),
             'service_count' => Service::count(),
             'project_count' => Project::count(),
@@ -43,7 +41,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_product', [
             'action' => 'list',
-            'products' => Product::with(['brand', 'category', 'lastUpdatedBy'])->latest('updated_at')->get(),
+            'products' => Product::with(['brand', 'category', 'lastUpdatedBy'])->orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -70,11 +68,11 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('uploads/products', 'public');
+            $data['image'] = $request->file('image')->store('uploads/image', 'public');
         }
         
         if ($request->hasFile('pdf_path')) {
-            $data['pdf_path'] = $request->file('pdf_path')->store('uploads/pdfs', 'public');
+            $data['pdf_path'] = $request->file('pdf_path')->store('uploads/pdf', 'public');
         }
 
         $data['last_updated_by'] = Auth::id();
@@ -155,7 +153,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_service', [
             'action' => 'list',
-            'services' => Service::with(['category', 'lastUpdatedBy'])->latest('updated_at')->get(),
+            'services' => Service::with(['category', 'lastUpdatedBy'])->orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -222,7 +220,7 @@ class AdminController extends Controller
     // Show list of all projects
     public function listProjects(): View
     {
-        $projects = Project::with(['categories', 'images', 'lastUpdatedBy'])->latest('updated_at')->get()->map(function($project) {
+        $projects = Project::with(['categories', 'images', 'lastUpdatedBy'])->orderBy('id', 'asc')->get()->map(function($project) {
         $project->category_names = $project->categories->pluck('name')->join(', ');
         $project->thumbnail = $project->images->sortBy('upload_order')->first()->image_path ?? null;
         return $project;
