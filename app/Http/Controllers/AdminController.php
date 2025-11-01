@@ -50,8 +50,8 @@ class AdminController extends Controller
     {
         return view('admin.manage_product', [
             'action' => 'add',
-            'brands' => ProductBrand::orderBy('name')->get(),
-            'categories' => ModelsProductCategory::orderBy('name')->get()
+            'brands' => ProductBrand::orderBy('id', 'asc')->get(),
+            'categories' => ModelsProductCategory::orderBy('id', 'asc')->get()
         ]);
     }
 
@@ -68,7 +68,7 @@ class AdminController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('uploads/image', 'public');
+            $data['image'] = $request->file('image')->store('uploads/image/products', 'public');
         }
         
         if ($request->hasFile('pdf_path')) {
@@ -88,8 +88,8 @@ class AdminController extends Controller
         return view('admin.manage_product', [
             'action' => 'edit',
             'product_to_edit' => Product::findOrFail($id),
-            'brands' => ProductBrand::orderBy('name')->get(),
-            'categories' => ModelsProductCategory::orderBy('name')->get()
+            'brands' => ProductBrand::orderBy('id', 'asc')->get(),
+            'categories' => ModelsProductCategory::orderBy('id', 'asc')->get()
         ]);
     }
 
@@ -112,7 +112,7 @@ class AdminController extends Controller
             if ($product->image) {
                 Storage::disk('public')->delete($product->image);
             }
-            $data['image'] = $request->file('image')->store('uploads/products', 'public');
+            $data['image'] = $request->file('image')->store('uploads/image/products', 'public');
         }
 
         if ($request->hasFile('pdf_path')) {
@@ -120,7 +120,7 @@ class AdminController extends Controller
             if ($product->pdf_path) {
                 Storage::disk('public')->delete($product->pdf_path);
             }
-            $data['pdf_path'] = $request->file('pdf_path')->store('uploads/pdfs', 'public');
+            $data['pdf_path'] = $request->file('pdf_path')->store('uploads/pdf', 'public');
         }
 
         $data['last_updated_by'] = Auth::id();
@@ -162,7 +162,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_service', [
             'action' => 'add',
-            'categories' => ServiceCategory::orderBy('name')->get(),
+            'categories' => ServiceCategory::orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -187,7 +187,7 @@ class AdminController extends Controller
         return view('admin.manage_service', [
             'action' => 'edit',
             'service_to_edit' => Service::findOrFail($id),
-            'categories' => ServiceCategory::orderBy('name')->get(),
+            'categories' => ServiceCategory::orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -237,7 +237,7 @@ class AdminController extends Controller
     {
         return view('admin.manage_project', [
             'action' => 'add',
-            'categories' => ProjectCategory::orderBy('name')->get(),
+            'categories' => ProjectCategory::orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -260,7 +260,7 @@ class AdminController extends Controller
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('uploads/projects', 'public');
+                $path = $file->store('uploads/image/projects', 'public');
                 ProjectImage::create([
                     'project_id' => $project->id,
                     'image_path' => $path,
@@ -282,7 +282,7 @@ class AdminController extends Controller
             'project_to_edit' => $project,
             'project_images' => $project->images->sortBy('upload_order'),
             'project_categories_assigned' => $project->categories->pluck('id')->toArray(),
-            'categories' => ProjectCategory::orderBy('name')->get(),
+            'categories' => ProjectCategory::orderBy('id', 'asc')->get(),
         ]);
     }
 
@@ -320,7 +320,7 @@ class AdminController extends Controller
         // Add new image
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
-                $path = $file->store('uploads/projects', 'public');
+                $path = $file->store('uploads/image/projects', 'public');
                 ProjectImage::create([
                     'project_id' => $project->id,
                     'image_path' => $path,
