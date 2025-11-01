@@ -28,9 +28,9 @@
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
                     
                     @if(Auth::user()->role == 'admin')
-                        <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Panel</a></li>
+                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
                     @else
-                        <li><a class="dropdown-item" href="{{ url('/') }}">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
                     @endif
 
                     <li><hr class="dropdown-divider"></li>
@@ -38,9 +38,9 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                {{ ('Log Out') }}
                             </a>
                         </form>
                     </li>

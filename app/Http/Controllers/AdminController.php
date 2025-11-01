@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-// Illuminate Components
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-// Models
 use App\Models\Product;
 use App\Models\ProductBrand;
 use App\Models\ProductCategory as ModelsProductCategory;
@@ -22,9 +20,7 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    /**
-     * Display the admin dashboard with stats.
-     */
+    // Display admin dashboard with stats
     public function dashboard(): View
     {
         return view('admin.admin_dashboard', [
@@ -41,13 +37,8 @@ class AdminController extends Controller
         ]);
     }
 
-    // -----------------------------------------------------------------------
     // PRODUCT CRUD
-    // -----------------------------------------------------------------------
-
-    /**
-     * Show the list of all products.
-     */
+    // Show list of all products
     public function listProducts(): View
     {
         return view('admin.manage_product', [
@@ -56,12 +47,9 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new product.
-     */
+    // Show form for creating new product
     public function createProduct(): View
     {
-        // This assumes you fixed manage_product.blade.php as suggested
         return view('admin.manage_product', [
             'action' => 'add',
             'brands' => ProductBrand::orderBy('name')->get(),
@@ -69,9 +57,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Store a new product in the database.
-     */
+    // Store new product in database
     public function storeProduct(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -80,7 +66,7 @@ class AdminController extends Controller
             'category_id' => 'required|integer|exists:product_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'pdf_path' => 'nullable|file|mimes:pdf|max:5120', // 5MB Max
+            'pdf_path' => 'nullable|file|mimes:pdf|max:5120',
         ]);
 
         if ($request->hasFile('image')) {
@@ -98,9 +84,7 @@ class AdminController extends Controller
         return redirect()->route('admin.products.list')->with('message', 'Product created successfully.');
     }
 
-    /**
-     * Show the form for editing a product.
-     */
+    // Show form for editing product
     public function editProduct(string $id): View
     {
         return view('admin.manage_product', [
@@ -111,9 +95,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Update an existing product.
-     */
+    // Update existing product
     public function updateProduct(Request $request, string $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
@@ -149,9 +131,7 @@ class AdminController extends Controller
         return redirect()->route('admin.products.list')->with('message', 'Product updated successfully.');
     }
 
-    /**
-     * Delete a product.
-     */
+    // Delete product
     public function destroyProduct(string $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
@@ -169,13 +149,8 @@ class AdminController extends Controller
         return redirect()->route('admin.products.list')->with('message', 'Product deleted successfully.');
     }
 
-    // -----------------------------------------------------------------------
     // SERVICE CRUD
-    // -----------------------------------------------------------------------
-
-    /**
-     * Show the list of all services.
-     */
+    // Show list of all services.
     public function listServices(): View
     {
         return view('admin.manage_service', [
@@ -184,9 +159,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new service.
-     */
+    // Show form for creating new service.
     public function createService(): View
     {
         return view('admin.manage_service', [
@@ -195,9 +168,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Store a new service in the database.
-     */
+    // Store new service in database
     public function storeService(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -212,9 +183,7 @@ class AdminController extends Controller
         return redirect()->route('admin.services.list')->with('message', 'Service created successfully.');
     }
 
-    /**
-     * Show the form for editing a service.
-     */
+    // Show form for editing service
     public function editService(string $id): View
     {
         return view('admin.manage_service', [
@@ -224,9 +193,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Update an existing service.
-     */
+    // Update existing service
     public function updateService(Request $request, string $id): RedirectResponse
     {
         $service = Service::findOrFail($id);
@@ -242,9 +209,7 @@ class AdminController extends Controller
         return redirect()->route('admin.services.list')->with('message', 'Service updated successfully.');
     }
 
-    /**
-     * Delete a service.
-     */
+    // Delete service
     public function destroyService(string $id): RedirectResponse
     {
         $service = Service::findOrFail($id);
@@ -253,13 +218,8 @@ class AdminController extends Controller
         return redirect()->route('admin.services.list')->with('message', 'Service deleted successfully.');
     }
 
-    // -----------------------------------------------------------------------
     // PROJECT CRUD
-    // -----------------------------------------------------------------------
-
-    /**
-     * Show the list of all projects.
-     */
+    // Show list of all projects
     public function listProjects(): View
     {
         $projects = Project::with(['categories', 'images', 'lastUpdatedBy'])->latest('updated_at')->get()->map(function($project) {
@@ -274,9 +234,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new project.
-     */
+    // Show form for creating new project
     public function createProject(): View
     {
         return view('admin.manage_project', [
@@ -285,9 +243,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Store a new project in the database.
-     */
+    // Store new project in database
     public function storeProject(Request $request): RedirectResponse
     {
         $data = $request->validate([
@@ -318,9 +274,7 @@ class AdminController extends Controller
         return redirect()->route('admin.projects.list')->with('message', 'Project created successfully.');
     }
 
-    /**
-     * Show the form for editing a project.
-     */
+    // Show form for editing project
     public function editProject(string $id): View
     {
         $project = Project::with('images', 'categories')->findOrFail($id);
@@ -334,9 +288,7 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Update an existing project.
-     */
+    // Update existing project
     public function updateProject(Request $request, string $id): RedirectResponse
     {
         $project = Project::findOrFail($id);
@@ -355,28 +307,26 @@ class AdminController extends Controller
         $data['last_updated_by'] = Auth::id();
         $project->update($data);
         
-        // Sync categories (removes old, adds new)
+        // Sync categories
         $project->categories()->sync($data['category_ids']);
 
-        // Delete selected images
+        // Delete selected image
         if ($request->has('delete_images')) {
-            $images_to_delete = ProjectImage::whereIn('image_id', $request->delete_images)
-                                            ->where('project_id', $project->id) // Security check
-                                            ->get();
+            $images_to_delete = ProjectImage::whereIn('image_id', $request->delete_images)->where('project_id', $project->id)->get();
             foreach ($images_to_delete as $image) {
                 Storage::disk('public')->delete($image->image_path);
                 $image->delete();
             }
         }
 
-        // Add new images
+        // Add new image
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $file) {
                 $path = $file->store('uploads/projects', 'public');
                 ProjectImage::create([
                     'project_id' => $project->id,
                     'image_path' => $path,
-                    'upload_order' => $index, // You might want a better system for ordering
+                    'upload_order' => $index,
                 ]);
             }
         }
@@ -384,34 +334,31 @@ class AdminController extends Controller
         return redirect()->route('admin.projects.list')->with('message', 'Project updated successfully.');
     }
 
-    /**
-     * Delete a project.
-     */
+    // Delete project
     public function destroyProject(string $id): RedirectResponse
     {
         $project = Project::with('images')->findOrFail($id);
 
-        // 1. Delete all associated images from storage and DB
+        // Delete all associated image from storage and DB
         foreach ($project->images as $image) {
             Storage::disk('public')->delete($image->image_path);
             $image->delete();
         }
 
-        // 2. Detach all categories from pivot table
+        // Detach all categories from pivot table
         $project->categories()->detach();
 
-        // 3. Delete the project itself
+        // Delete the project
         $project->delete();
 
         return redirect()->route('admin.projects.list')->with('message', 'Project deleted successfully.');
     }
 
+    // USER
+    // Show list of all user has interest
     public function listUsers(): View
     {
-        $users = User::with(['interested_products', 'interested_services'])
-                    ->where('role', '!=', 'admin') // Don't list other admins
-                    ->latest()
-                    ->get();
+        $users = User::with(['interested_products', 'interested_services'])->where('role', '!=', 'admin')->latest()->get();
 
         return view('admin.manage_user', ['users' => $users]);
     }

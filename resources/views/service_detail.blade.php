@@ -10,6 +10,12 @@
             <div class="container">
                 
                 <div class="bg-light bg-opacity-95 rounded-3 shadow-lg p-4 p-md-5">
+
+                    @if (session('message'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     
                     <nav aria-label="breadcrumb" class="mb-4">
                         <ol class="breadcrumb">
@@ -33,6 +39,25 @@
                             <p class="lead fw-normal">
                                 {!! nl2br(e($service->description)) !!}
                             </p>
+
+                            @auth
+                                @if(Auth::user()->role != 'admin')
+                                
+                                    @if ($isInterested)
+                                        <button class="btn btn-success btn-lg fw-bold" disabled>
+                                            <i class="bi bi-check-lg"></i> Added to List
+                                        </button>
+                                    @else
+                                        <form action="{{ route('interest.service.store', $service->id) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-primary btn-lg fw-bold" title="Add to Interest List">
+                                                <i class="bi bi-plus-circle"></i> Add to Interest
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                @endif
+                            @endauth
                         </div>
 
                     </div>
