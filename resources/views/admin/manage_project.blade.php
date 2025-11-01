@@ -11,7 +11,7 @@
                 <h1 class="display-5 fw-bold text-white mb-4">{{ $action === 'edit' ? 'Edit' : 'Add New' }} Project</h1>
                 <div class="card card-translucent shadow-lg p-4">
                     <div class="card-body">
-                        <form action="{{ $action === 'edit' ? route('admin.projects.update', $product_to_edit->id) : route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ $action === 'edit' ? route('admin.projects.update', $project_to_edit->id) : route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if ($action === 'edit')
                                 @method('PUT')
@@ -59,7 +59,6 @@
                                             <img src="{{ asset('storage/' . $image->image_path) }}" alt="Current Image" class="img-fluid current-project-img rounded">
                                             <div class="form-check position-absolute top-0 end-0 bg-white-75 p-1 rounded me-1 mt-1">
                                                 <input class="form-check-input" type="checkbox" name="delete_images[]" value="{{ $image->id }}" id="delete_img_{{ $image->id }}">
-                                                <label class="form-check-label text-danger small fw-bold" for="delete_img_{{ $image->id }}">Delete</label>
                                             </div>
                                         </div>
                                     </div>

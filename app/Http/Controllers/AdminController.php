@@ -64,7 +64,7 @@ class AdminController extends Controller
             'category_id' => 'required|integer|exists:product_categories,id',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'pdf_path' => 'nullable|file|mimes:pdf|max:5120',
+            'pdf_path' => 'nullable|file|mimes:pdf|max:10240',
         ]);
 
         if ($request->hasFile('image')) {
@@ -310,7 +310,7 @@ class AdminController extends Controller
 
         // Delete selected image
         if ($request->has('delete_images')) {
-            $images_to_delete = ProjectImage::whereIn('image_id', $request->delete_images)->where('project_id', $project->id)->get();
+            $images_to_delete = ProjectImage::whereIn('id', $request->delete_images)->where('project_id', $project->id)->get();
             foreach ($images_to_delete as $image) {
                 Storage::disk('public')->delete($image->image_path);
                 $image->delete();
