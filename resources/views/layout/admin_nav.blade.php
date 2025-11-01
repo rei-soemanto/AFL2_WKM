@@ -63,19 +63,19 @@
                     align-items-center justify-content-center 
                     mb-0 mx-auto w-100 custom-nav-xs">
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('admin.dashbaord') }}">Dashboard</a>
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('admin.user') }}">User</a>
+                    <a class="nav-link" href="{{ route('admin.users.list') }}">User</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('admin.project') }}">Portfolio</a>
+                    <Portfolio class="nav-link" href="{{ route('admin.projects.list') }}">Portfolio</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('admin.product') }}">Products</a>
+                    <a class="nav-link" href="{{ route('admin.products.list') }}">Products</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <a class="nav-link" href="{{ url('admin.service') }}">Services</a>
+                    <a class="nav-link" href="{{ route('admin.services.list') }}">Services</a>
                 </li>
             </ul>
         </div>
