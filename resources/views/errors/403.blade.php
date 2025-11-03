@@ -2,9 +2,9 @@
 
 @section('name', 'Forbidden')
 @section('content')
-<main class="main-background" style="background-image: url('{{ asset('img/aboutpagebg.jpg') }}')">
+<main class="product-main-background" style="background-image: url('{{ asset('img/logoWKM.jpg') }}'); background-size: 70%;">
     <div class="hero-container d-flex flex-column">
-        <div class="bg-overlay-darker flex-grow-1 d-flex align-items-center justify-content-center text-center">
+        <div class="bg-overlay min-vh-100 py-5 flex-grow-1 d-flex align-items-center justify-content-center text-center">
             
             <div>
                 <h1 class="display-huge fw-bolder text-gold">403</h1>
