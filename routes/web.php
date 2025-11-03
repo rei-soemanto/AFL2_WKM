@@ -67,3 +67,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/storage-link', function () {
+    try {
+        Artisan::call('storage:link');
+        return 'Storage link created successfully!';
+    } catch (Exception $e) {
+        // Log the error for debugging
+        Log::error('Error creating storage link: ' . $e->getMessage());
+        return 'Error creating storage link. Check logs.';
+    }
+});
