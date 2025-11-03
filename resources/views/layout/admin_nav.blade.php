@@ -71,7 +71,7 @@
                     <a class="nav-link" href="{{ route('admin.users.list') }}">User</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
-                    <Portfolio class="nav-link" href="{{ route('admin.projects.list') }}">Portfolio</a>
+                    <a class="nav-link" href="{{ route('admin.projects.list') }}">Portfolio</a>
                 </li>
                 <li class="nav-item mx-sm-1 py-2">
                     <a class="nav-link" href="{{ route('admin.products.list') }}">Products</a>
