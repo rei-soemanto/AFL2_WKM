@@ -17,8 +17,10 @@
 
         @auth
             <div class="nav-item dropdown mx-2 mx-lg-2">
-                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 24px; color: #e0bb35;">
-                    Admin, {{ Auth::user()->name }}
+                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="custom-username">
+                        Admin, {{ Auth::user()->name }}
+                    </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
 
