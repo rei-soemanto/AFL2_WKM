@@ -116,6 +116,13 @@ body {
     background-color: $color-gold-light;
 }
 
+.custom-username {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width:200px;
+}
+
 // Dropdown for nav
 .custom-arrow-toggle {
     border: none;
