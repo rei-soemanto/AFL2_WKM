@@ -2,7 +2,7 @@
 
 @section('name', 'Service Unavailable')
 @section('content')
-<main class="bg-black">
+<main class="main-background" style="background-image: url('{{ asset('img/aboutpagebg.jpg') }}')">
     <div class="hero-container d-flex flex-column">
         <div class="bg-overlay-darker flex-grow-1 d-flex align-items-center justify-content-center text-center">
             
