@@ -14,9 +14,9 @@
         <div class="container-xl py-5">
 
             {{--
-            *
+            *   ================================
             *   SECTION 1: GREETINGS
-            *
+            *   ================================
             --}}
 
             {{-- Admin dashboard title --}}
@@ -28,7 +28,7 @@
 
             {{-- Greetings from username --}}
             <p class="
-                fs-5 text-center text-white-50
+                fs-5 text-center text-white-50 text-break
                 mb-5 
             ">
                 Welcome, {{ Auth::user()->name }}!
@@ -36,9 +36,9 @@
 
 
             {{--
-                *
+                *   ================================
                 *   SECTION 2: DASHBOARD CARDS 
-                *
+                *   ================================
             --}}
 
             {{-- Grid for dashboard cards --}}

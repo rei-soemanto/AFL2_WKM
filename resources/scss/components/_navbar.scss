@@ -1,47 +1,87 @@
+/* ======================
+    NAVBAR BASE
+====================== */
 .navbar-custom {
     background-color: $color-bg-dark;
+    padding: 0.75rem 1rem;
     transition: padding 0.3s ease;
-}
 
-.navbar-logo {
-    height: 180px;
-    transition: height 0.3s ease;
 
-    @include respond(xl) { height: 5rem; }
-    @include respond(lg) { height: 4rem; }
-}
+    // Logo
+    .navbar-logo {
+        height: 100px;
+        transition: height 0.3s ease;
 
-.navbar-custom .nav-link {
-    color: $color-gold;
-    font-size: 24px;
-    padding: 0 2rem;
-    transition: all 0.3s ease;
-
-    &:hover, &:focus {
-        color: $color-gold-light;
+        @include respond(md) { height: 4rem; }
+        @include respond(sm) { height: 3.5rem; }
     }
 
-    @include respond(xl) {
-        font-size: 20px;
-        padding: 0 1rem;
-    }
+    // Links
+    .nav-link {
+        color: $color-gold;
+        font-size: 18px;
+        padding: 0 0.8rem;
+        transition: all 0.3s ease;
 
-    @include respond(lg) {
-        font-size: 16px;
-        padding: 0 0.6rem;
+        &:hover, &:focus {
+            color: $color-gold-light;
+        }
+
+        @include respond(xl) {
+            font-size: 20px;
+            padding: 0 1rem;
+        }
+
+        @include respond(lg) {
+            font-size: 1rem;
+            padding: 0 0.5rem;
+        }
     }
 }
 
-.custom-username {
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 400px;
+/* ======================
+    RESPONSIVE STYLES
+====================== */
 
-    @include respond(lg) { max-width: 10rem; }
+// Long username handling
+.nav-item.dropdown {
+    max-width: 250px;
+    flex-shrink: 1;
+    position: relative;
+    overflow: visible;
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        min-width: 0;
+        white-space: nowrap;
+
+        .username-text {
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+
+            @include respond(lg) { max-width: 20rem; }
+        }
+
+        &:hover {
+            color: $color-gold-light;
+        }
+    }
+
+    .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
 }
 
+
+/* ======================
+    RESPONSIVE NAV TOGGLE (XS - LG)
+====================== */
 .custom-arrow-toggle {
     border: none;
     background: none;
@@ -49,11 +89,11 @@
 
     i {
         font-size: 1.5rem;
-        transition: transform 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
     }
 
     &[aria-expanded="true"] i {
-        transform: rotate(180deg);
+        transform: rotate(180deg) !important;
     }
 
     &:hover {

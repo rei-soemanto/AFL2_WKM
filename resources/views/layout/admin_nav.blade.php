@@ -1,49 +1,121 @@
 <nav class="navbar navbar-dark navbar-custom">
-    <div class="container-fluid d-flex flex-nowrap align-items-center justify-content-between">
+    <div class="container-fluid row
+        align-items-center p-0
+    ">
 
-        <!-- Logo -->
-        <a class="navbar-brand" href="{{ url('/') }}">
+        {{--
+        * ====================
+        * Logo
+        * ====================
+        --}}
+        <a class="navbar-brand col-auto
+        flex-shrink-0 me-3
+        navbar-side
+        " href="{{ url('/') }}">
+            
             <img src="{{ asset('img/logoWKM.png') }}" alt="WKM Logo" class="navbar-logo">
         </a>
 
-        <!-- Nav links (MD - XL) -->
-        <ul class="navbar-nav d-none fw-bold d-md-flex flex-row align-items-center">
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ route('admin.users.list') }}">User</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ route('admin.projects.list') }}">Portfolio</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ route('admin.products.list') }}">Products</a></li>
-            <li class="nav-item mx-1"><a class="nav-link" href="{{ route('admin.services.list') }}">Services</a></li>
+        {{--
+        * ====================
+        * Links to dashboard (Only for MD to XL)
+        * ====================
+        --}}
+        <ul class="
+            navbar-nav col
+            d-none d-lg-flex position-absolute
+            flex-row flex-grow-1 
+            justify-content-center 
+            fw-bold text-center
+            mx-auto 
+        ">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users.list') }}">
+                    User
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.projects.list') }}">
+                    Portfolio
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.products.list') }}">
+                    Products
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.services.list') }}">
+                    Services
+                </a>
+            </li>
+
         </ul>
 
+
+        {{--
+        * ====================
+        * Name and Dropdown
+        * ====================
+        --}}
         @auth
-            <div class="nav-item dropdown mx-2 mx-lg-2">
-                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="custom-username">
+            <div class="
+                nav-item dropdown col-auto
+                flex-shrink-1 
+                text-end
+                navbar-side
+            ">
+
+                <a class="nav-link dropdown-toggle fw-bold" 
+                    href="#" id="navbarDropdown" role="button" 
+                    data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <span class="username-text">
                         Admin, {{ Auth::user()->name }}
                     </span>
                 </a>
+
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ url('/') }}">
+                            User View
+                        </a>
+                    </li>
 
-                    <li><a class="dropdown-item" href="{{ url('/') }}">User View</a></li>
-
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                    this.closest('form').submit();">
-                                {{ ('Log Out') }}
+                                onclick="event.preventDefault(); this.closest('form').submit();">
+                                Log Out
                             </a>
                         </form>
                     </li>
                 </ul>
+
             </div>
         @endauth
     </div>
 
-    <!-- Line and button (XS - SM) -->
-    <div class="w-100 d-md-none">
+
+    {{-- 
+    * ====================
+    * Nav for below LG
+    * ====================
+    --}}
+
+    {{-- Line and button --}}
+    <div class="w-100 d-lg-none">
         <hr class="custom-divider mt-0"> 
         
         <div class="text-center py-2">
@@ -58,9 +130,9 @@
         </div>
     </div>
 
-    <div class="collapse navbar-collapse d-md-none" id="navLinksCollapse">
-        <div class="container-fluid">
-            <ul class="navbar-nav 
+    {{-- Content of nav when button is pressed --}}
+    <div class="collapse navbar-collapse" id="navLinksCollapse">
+        <ul class="navbar-nav 
                     flex-column flex-sm-row 
                     align-items-center justify-content-center 
                     mb-0 mx-auto w-100 custom-nav-xs">
@@ -80,6 +152,5 @@
                     <a class="nav-link" href="{{ route('admin.services.list') }}">Services</a>
                 </li>
             </ul>
-        </div>
     </div>
 </nav>
