@@ -36,9 +36,11 @@
         * ====================
         --}}
         @guest
-            <a href="{{ route('login') }}" class="btn btn-custom fw-bold text-nowrap mx-2 mx-lg-5">
-                Login
-            </a>
+            <div class="col-auto">
+                <a href="{{ route('login') }}" class="btn btn-custom fw-bold text-nowrap mx-2 mx-lg-5">
+                    Login
+                </a>
+            </div>
         @endguest
 
         @auth
