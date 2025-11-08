@@ -1,0 +1,50 @@
+.site-footer {
+    padding: 60px 0;
+    background-color: $color-bg-dark;
+
+    @include respond(xl) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    @include respond(md) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+    .footer-logo {
+    height: 120px;
+
+    @include respond(xl) { height: 80px; }
+    @include respond(md) {
+        height: 150px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background-color: $color-white;
+    color: $color-bg-dark;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.footer-copyright {
+    background-color: $color-bg-dark;
+    font-size: 16px;
+
+    @include respond(md) {
+        font-size: 12px;
+    }
+}

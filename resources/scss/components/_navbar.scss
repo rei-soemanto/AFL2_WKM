@@ -1,0 +1,62 @@
+.navbar-custom {
+    background-color: $color-bg-dark;
+    transition: padding 0.3s ease;
+}
+
+.navbar-logo {
+    height: 180px;
+    transition: height 0.3s ease;
+
+    @include respond(xl) { height: 5rem; }
+    @include respond(lg) { height: 4rem; }
+}
+
+.navbar-custom .nav-link {
+    color: $color-gold;
+    font-size: 24px;
+    padding: 0 2rem;
+    transition: all 0.3s ease;
+
+    &:hover, &:focus {
+        color: $color-gold-light;
+    }
+
+    @include respond(xl) {
+        font-size: 20px;
+        padding: 0 1rem;
+    }
+
+    @include respond(lg) {
+        font-size: 16px;
+        padding: 0 0.6rem;
+    }
+}
+
+.custom-username {
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 400px;
+
+    @include respond(lg) { max-width: 10rem; }
+}
+
+.custom-arrow-toggle {
+    border: none;
+    background: none;
+    color: $color-gold;
+
+    i {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &[aria-expanded="true"] i {
+        transform: rotate(180deg);
+    }
+
+    &:hover {
+        color: $color-gold-light;
+    }
+}
