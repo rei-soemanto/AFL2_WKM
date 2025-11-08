@@ -120,7 +120,14 @@ body {
     display: inline-block;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width:200px;
+    white-space: nowrap;
+    max-width:400px;
+}
+
+@include respond(lg) {
+    .custom-username {
+        max-width: 10rem;
+    }
 }
 
 // Dropdown for nav
