@@ -1,0 +1,19 @@
+.service-main-background {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.service-bg-overlay {
+    background-color: rgba(15, 15, 15, 0.7);
+}
+
+.card-translucent {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.service-item {
+    border-left: 4px solid $color-gold;
+    padding-left: 1.5rem;
+}

@@ -1,0 +1,29 @@
+.form-control-dark {
+    background-color: #1a202c;
+    border-color: #4a5568;
+    color: $color-white;
+
+    &:focus {
+        border-color: $color-gold;
+        box-shadow: 0 0 0 0.25rem rgba(224, 187, 53, 0.25);
+    }
+
+    &::placeholder {
+        color: #a0aec0;
+    }
+}
+
+.nav-tabs .nav-link {
+    color: #a0aec0;
+    border: none;
+    border-bottom: 2px solid transparent;
+
+    &.active {
+        color: $color-gold;
+        border-bottom-color: $color-gold;
+    }
+
+    &:hover {
+        border-bottom: 2px solid #a0aec0;
+    }
+}

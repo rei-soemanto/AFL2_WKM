@@ -1,0 +1,15 @@
+.custom-divider {
+    border: none;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+    margin: 0.75rem 0;
+}
+
+.bg-white-75 {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.display-huge {
+    font-size: 8rem;
+}

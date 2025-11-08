@@ -1,0 +1,12 @@
+body {
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.bg-custom-dark,
+.bg-custom-card-dark {
+    background-color: $color-bg-dark !important;
+}

@@ -1,0 +1,63 @@
+.btn-gold {
+    background-color: $color-gold;
+    color: $color-bg-dark;
+
+    &:hover {
+        background-color: $color-gold-light;
+        color: $color-bg-dark;
+    }
+}
+
+.btn-purple {
+    background-color: #6f42c1;
+    color: $color-white;
+
+    &:hover {
+        background-color: #59359a;
+        color: $color-white;
+    }
+}
+
+.btn-custom {
+    background-color: $color-gold;
+    color: $color-bg-dark !important;
+    border: none;
+    font-size: 18px;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $color-gold-light;
+    }
+
+    @include respond(xl) {
+        font-size: 16px;
+        padding: 0.4rem 1rem;
+    }
+
+    @include respond(lg) {
+        font-size: 14px;
+        padding: 0.35rem 0.8rem;
+    }
+}
+
+.btn-submit {
+    background-color: $color-white;
+    color: $color-bg-dark;
+    padding: 0.75rem 1.25rem;
+    width: 160px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+        background-color: #bbbbbb;
+        color: $color-bg-dark;
+    }
+
+    @include respond(md) {
+        width: 70%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
