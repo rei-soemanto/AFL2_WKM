@@ -15,7 +15,7 @@
         * Nav links (Desktop MD–XL)
         * ====================
         --}}
-        <ul class="navbar-nav col d-none d-lg-flex position-absolute flex-row flex-grow-1 justify-content-center fw-bold text-center mx-auto">
+        <ul class="navbar-nav col d-none d-lg-flex flex-row flex-grow-1 justify-content-center fw-bold text-center mx-auto">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">About</a>
             </li>
