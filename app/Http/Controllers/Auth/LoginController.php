@@ -21,11 +21,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @return string
-     */
+    // Login redirecting for admin and user
     protected function redirectTo()
     {
         if (Auth::user()->role == 'admin') {
@@ -34,24 +30,16 @@ class LoginController extends Controller
         return '/';
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Login functionality and Show or hide logout method based on roles
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
     }
 
-    /**
-     * Show the application's login form.
-     *
-     * @return \Illuminate\View\View
-     */
+    // Show login form
     public function showLoginForm()
     {
-        return view('login'); // This points to your login.blade.php
+        return view('login');
     }
 }

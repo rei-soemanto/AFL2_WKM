@@ -24,11 +24,7 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @return string
-     */
+    // Registration redirecting for admin and user
     protected function redirectTo()
     {
         if (Auth::user()->role == 'admin') {
@@ -37,22 +33,13 @@ class RegisterController extends Controller
         return '/';
     }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    // Registration functionality access for guest
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
+    // Registration form validator
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -62,12 +49,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
+    // Create new user after registration
     protected function create(array $data)
     {
         return User::create([
@@ -77,11 +59,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Show the application's registration form.
-     *
-     * @return \Illuminate\View\View
-     */
+    // Show registration form
     public function showRegistrationForm()
     {
         return view('login');
