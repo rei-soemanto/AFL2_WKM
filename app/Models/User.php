@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,14 +37,9 @@ class User extends Authenticatable
         ];
     }
 
-    public function products(): HasMany
+    public function userRole()
     {
-        return $this->hasMany(Product::class, 'last_updated_by');
-    }
-
-    public function services(): HasMany
-    {
-        return $this->hasMany(Service::class, 'last_updated_by');
+        return $this->belongsTo(UserRole::class, 'role_id');
     }
 
     public function interested_products(): BelongsToMany
