@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ProductCategory extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
+
+    protected $table = 'product_categories';
+
+    protected $fillable = ['name'];
 
     public $timestamps = false;
 

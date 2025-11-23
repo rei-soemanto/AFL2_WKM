@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\AdminController;
 
 Auth::routes();
 
@@ -31,39 +30,6 @@ Route::post('/service/{id}/add-interest', [PageController::class, 'addInterested
 Route::delete('/user_interest/product/{id}', [PageController::class, 'destroyInterestedProduct'])->middleware('auth')->name('interest.product.destroy');
 Route::delete('/user_interest/service/{id}', [PageController::class, 'destroyInterestedService'])->middleware('auth')->name('interest.service.destroy');
 
-// Admin
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-
-    // Admin Dashboard
-    Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
-    // User Interest List Route
-    Route::get('/users', [AdminController::class, 'listUsers'])->name('admin.users.list');
-
-    // Product List Routes
-    Route::get('/products', [AdminController::class, 'listProducts'])->name('admin.products.list');
-    Route::get('/products/create', [AdminController::class, 'createProduct'])->name('admin.products.create');
-    Route::post('/products', [AdminController::class, 'storeProduct'])->name('admin.products.store');
-    Route::get('/products/{id}/edit', [AdminController::class, 'editProduct'])->name('admin.products.edit');
-    Route::put('/products/{id}', [AdminController::class, 'updateProduct'])->name('admin.products.update');
-    Route::delete('/products/{id}', [AdminController::class, 'destroyProduct'])->name('admin.products.destroy');
-
-    // Service List Routes
-    Route::get('/services', [AdminController::class, 'listServices'])->name('admin.services.list');
-    Route::get('/services/create', [AdminController::class, 'createService'])->name('admin.services.create');
-    Route::post('/services', [AdminController::class, 'storeService'])->name('admin.services.store');
-    Route::get('/services/{id}/edit', [AdminController::class, 'editService'])->name('admin.services.edit');
-    Route::put('/services/{id}', [AdminController::class, 'updateService'])->name('admin.services.update');
-    Route::delete('/services/{id}', [AdminController::class, 'destroyService'])->name('admin.services.destroy');
-
-    // Project List Routes
-    Route::get('/projects', [AdminController::class, 'listProjects'])->name('admin.projects.list');
-    Route::get('/projects/create', [AdminController::class, 'createProject'])->name('admin.projects.create');
-    Route::post('/projects', [AdminController::class, 'storeProject'])->name('admin.projects.store');
-    Route::get('/projects/{id}/edit', [AdminController::class, 'editProject'])->name('admin.projects.edit');
-    Route::put('/projects/{id}', [AdminController::class, 'updateProject'])->name('admin.projects.update');
-    Route::delete('/projects/{id}', [AdminController::class, 'destroyProject'])->name('admin.projects.destroy');
-});
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,11 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ServiceCategory extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
 
-    public $timestamps = false;
+    protected $table = 'service_categories';
+
+    protected $fillable = ['name'];
 
     public function services(): HasMany
     {

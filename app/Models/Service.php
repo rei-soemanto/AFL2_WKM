@@ -9,11 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Service extends Model
 {
     use HasFactory;
+
+    protected $table = 'services';
+
     protected $fillable = [
         'category_id',
         'name',
         'description',
-        'last_updated_by'
+        'last_update_by',
     ];
 
     public function category(): BelongsTo

@@ -11,11 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Project extends Model
 {
     use HasFactory;
+
+    protected $table = 'projects';
+
     protected $fillable = [
         'name',
         'description',
-        'last_updated_by'
-    ];
+        'last_update_by',
+    ];  
 
     public function images(): HasMany
     {

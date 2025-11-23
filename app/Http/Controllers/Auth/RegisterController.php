@@ -27,9 +27,6 @@ class RegisterController extends Controller
     // Registration redirecting for admin and user
     protected function redirectTo()
     {
-        if (Auth::user()->role == 'admin') {
-            return '/admin';
-        }
         return '/';
     }
 

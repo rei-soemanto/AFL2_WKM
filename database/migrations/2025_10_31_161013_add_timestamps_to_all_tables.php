@@ -7,37 +7,32 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * List of tables to update.
+     */
+    protected $tables = [
+        'products',
+        'services',
+        'projects',
+        'product_brands',
+        'product_categories',
+        'service_categories',
+        'project_categories',
+    ];
+
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('services', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('projects', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('product_brands', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('product_categories', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('service_categories', function (Blueprint $table) {
-            $table->timestamps();
-        });
-
-        Schema::table('project_categories', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        foreach ($this->tables as $tableName) {
+            if (Schema::hasTable($tableName)) {
+                Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                    if (!Schema::hasColumn($tableName, 'created_at')) {
+                        $table->timestamps();
+                    }
+                });
+            }
+        }
     }
 
     /**
@@ -45,8 +40,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('all_tables', function (Blueprint $table) {
-            //
-        });
+        foreach ($this->tables as $tableName) {
+            if (Schema::hasTable($tableName)) {
+                Schema::table($tableName, function (Blueprint $table) {
+                    $table->dropTimestamps();
+                });
+            }
+        }
     }
 };

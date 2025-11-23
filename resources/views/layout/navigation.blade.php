@@ -51,8 +51,8 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    @if(Auth::user()->role == 'admin')
-                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                    @if(Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Admin')
+                        <li><a class="dropdown-item" href="https://management.thewkm.com">Management Panel</a></li>
                     @else
                         <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
                     @endif

@@ -9,11 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ProductBrand extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
 
-    public $timestamps = false;
+    protected $table = 'product_brands';
+
+    protected $fillable = ['name'];
 
     public function products(): HasMany
     {

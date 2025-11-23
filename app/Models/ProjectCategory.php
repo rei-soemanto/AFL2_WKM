@@ -9,9 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class ProjectCategory extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-    ];
+
+    protected $table = 'project_categories';
+
+    protected $fillable = ['name'];
 
     public $timestamps = false;
 

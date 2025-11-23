@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class ProjectImage extends Model
 {
     use HasFactory;
+
+    protected $table = 'project_images';
+
     protected $fillable = [
         'project_id',
         'image_path',

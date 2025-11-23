@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('project_categories', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
+            $table->timestamps();
         });
     }
 

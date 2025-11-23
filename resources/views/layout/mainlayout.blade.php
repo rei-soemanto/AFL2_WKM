@@ -10,17 +10,9 @@
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
-    @if (request()->is('admin*'))
-        @include('layout.admin_nav')
-    @else
-        @include('layout.navigation')
-    @endif
+    @include('layout.navigation')
     @yield('content')
-    @if (request()->is('admin*'))
-        @include('layout.admin_footer')
-    @else
-        @include('layout.footer')
-    @endif
+    @include('layout.footer')
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>

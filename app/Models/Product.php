@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
+
+    protected $table = 'products';
+    
     protected $fillable = [
         'brand_id',
         'category_id',

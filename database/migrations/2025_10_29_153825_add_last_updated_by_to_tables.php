@@ -7,30 +7,36 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * Tables to update.
+     */
+    protected $tables = ['products', 'services', 'projects'];
+
+    /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->foreignId('last_updated_by')->nullable()->constrained('users')->nullOnDelete();
-        });
-
-        Schema::table('services', function (Blueprint $table) {
-            $table->foreignId('last_updated_by')->nullable()->constrained('users')->nullOnDelete();
-        });
-
-        Schema::table('projects', function (Blueprint $table) {
-            $table->foreignId('last_updated_by')->nullable()->constrained('users')->nullOnDelete();
-        });
+        foreach ($this->tables as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                
+                if (Schema::hasColumn($tableName, 'last_updated_by')) {
+                    $table->renameColumn('last_updated_by', 'last_update_by');
+                } 
+                elseif (!Schema::hasColumn($tableName, 'last_update_by')) {
+                    $table->foreignId('last_update_by')->nullable()->constrained('users')->nullOnDelete();
+                }
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('tables', function (Blueprint $table) {
-            //
-        });
+        foreach ($this->tables as $tableName) {
+            Schema::table($tableName, function (Blueprint $table) use ($tableName) {
+                if (Schema::hasColumn($tableName, 'last_update_by')) {
+                    $table->renameColumn('last_update_by', 'last_updated_by');
+                }
+            });
+        }
     }
 };
