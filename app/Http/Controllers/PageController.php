@@ -16,7 +16,7 @@ class PageController extends Controller
     // Display list of all products grouped by brand
     public function products(): View
     {
-        $products = Product::with(['brand', 'category'])->get();
+        $products = Product::where('is_hidden', false)->with(['brand', 'category'])->get();
 
         $product_data = $products->groupBy('brand.name');
 
@@ -26,7 +26,7 @@ class PageController extends Controller
     // Display details of single product
     public function productDetail(string $id): View
     {
-        $product = Product::with(['brand', 'category'])->findOrFail($id);
+        $product = Product::where('is_hidden', false)->with(['brand', 'category'])->findOrFail($id);
 
         $isInterested = false;
         if (Auth::check() && Auth::user()->role != 'admin') {
