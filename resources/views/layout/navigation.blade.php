@@ -59,9 +59,8 @@
                     @else
                         <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
                     @endif
-
-                    <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
-
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{ route('users.index') }}">Account Management</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
