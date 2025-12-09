@@ -3,116 +3,134 @@
 @section('name', 'My Profile')
 
 @section('content')
-<div class="bg-black mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="container-fluid bg-black py-5" style="min-height: 100vh; background-color: #000000;">
 
     @if ($action === 'edit')
-        <div class="max-w-3xl mx-auto">
-            <div class="mb-8">
-                <a href="{{ route('users.index') }}" class="text-sm text-white hover:text-gray-300 flex items-center transition-colors">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        <div class="container" style="max-width: 768px;">
+            <div class="mb-4">
+                <a href="{{ route('users.index') }}" class="text-white text-decoration-none d-flex align-items-center mb-2">
+                    <svg class="me-1" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Back to Profile
                 </a>
-                <h1 class="text-3xl font-bold text-[#e0bb35] mt-2">Edit Profile</h1>
+                <h1 class="fw-bold" style="color: #e0bb35;">Edit Profile</h1>
             </div>
 
-            <div class="bg-[#0f0f0f] shadow-lg rounded-xl overflow-hidden border border-[#0f0f0f]">
-                <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data" class="p-8 space-y-6">
-                    @csrf
-                    @method('PATCH')
+            <div class="card border shadow-lg overflow-hidden" style="background-color: #0f0f0f; border-color: #0f0f0f;">
+                <div class="card-body p-4 p-md-5">
+                    <form action="{{ route('users.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
 
-                    <div>
-                        <label for="name" class="block text-sm font-bold text-[#e0bb35] mb-1">Full Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required 
-                            class="block w-full rounded-md border-[#e0bb35] shadow-sm text-gray-300 focus:border-[#e0bb35] focus:ring-[#e0bb35] sm:text-sm px-3 py-2">
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-bold text-[#e0bb35] mb-1">Email Address</label>
-                        <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required 
-                            class="block w-full rounded-md border-[#e0bb35] shadow-sm text-gray-300 focus:border-[#e0bb35] focus:ring-[#e0bb35] sm:text-sm px-3 py-2">
-                    </div>
-
-                    <hr class="border-[#e0bb35] my-4">
-                    <h3 class="text-lg font-medium text-[#e0bb35]">Change Password <span class="text-sm text-gray-300 font-normal">(Leave blank to keep current)</span></h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="password" class="block text-sm font-bold text-[#e0bb35] mb-1">New Password</label>
-                            <input type="password" name="password" id="password" placeholder="New Password" class="block w-full rounded-md border-[#e0bb35] shadow-sm text-gray-300 focus:border-[#e0bb35] focus:ring-[#e0bb35] sm:text-sm px-3 py-2">
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold small" style="color: #e0bb35;">Full Name</label>
+                            <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" required 
+                                class="form-control bg-transparent text-light" 
+                                style="border-color: #e0bb35;">
                         </div>
-                        <div>
-                            <label for="password_confirmation" class="block text-sm font-bold text-[#e0bb35] mb-1">Confirm Password</label>
-                            <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" class="block w-full rounded-md border-[#e0bb35] shadow-sm text-gray-300 focus:border-[#e0bb35] focus:ring-[#e0bb35] sm:text-sm px-3 py-2">
-                        </div>
-                    </div>
 
-                    <div class="pt-6 border-t border-[#e0bb35] flex justify-end gap-3">
-                        <a href="{{ route('users.index') }}" class="px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-300">
-                            Cancel
-                        </a>
-                        <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#e0bb35] border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-[#e3cf85]">
-                            Save Changes
-                        </button>
-                    </div>
-                </form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold small" style="color: #e0bb35;">Email Address</label>
+                            <input type="email" name="email" id="email" value="{{ old('email', $user->email) }}" required 
+                                class="form-control bg-transparent text-light" 
+                                style="border-color: #e0bb35;">
+                        </div>
+
+                        <hr class="my-4" style="border-color: #e0bb35; opacity: 1;">
+
+                        <h3 class="h5 fw-medium mb-3" style="color: #e0bb35;">
+                            Change Password <span class="small text-secondary fw-normal">(Leave blank to keep current)</span>
+                        </h3>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label fw-bold small" style="color: #e0bb35;">New Password</label>
+                                <input type="password" name="password" id="password" placeholder="New Password" 
+                                    class="form-control bg-transparent text-light" 
+                                    style="border-color: #e0bb35;">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="password_confirmation" class="form-label fw-bold small" style="color: #e0bb35;">Confirm Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" 
+                                    class="form-control bg-transparent text-light" 
+                                    style="border-color: #e0bb35;">
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 d-flex justify-content-end gap-2" style="border-top: 1px solid #e0bb35;">
+                            <a href="{{ route('users.index') }}" class="btn btn-light text-uppercase fw-bold shadow-sm" style="font-size: 0.75rem; letter-spacing: 1px;">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn text-black text-uppercase fw-bold" style="background-color: #e0bb35; border-color: #e0bb35; font-size: 0.75rem; letter-spacing: 1px;">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
     @else
-        <div class="max-w-3xl mx-auto">
+        <div class="container" style="max-width: 768px;">
             
             @if (session('success'))
-                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded shadow-md">
+                <div class="alert alert-success border-start border-5 border-success shadow-sm mb-4" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
 
-            <div class="bg-[#0f0f0f] shadow-xl rounded-2xl overflow-hidden">
+            <div class="card border-0 shadow-lg overflow-hidden" style="background-color: #0f0f0f; border-radius: 1rem;">
                 
-                <div class="h-32 bg-gradient-to-r from-[#e0bb35] to-[#e3cf85]"></div>
+                <div style="height: 128px; background: linear-gradient(to right, #e0bb35, #e3cf85);"></div>
                 
-                <div class="px-8 pb-8">
-                    <div class="relative flex justify-between items-end -mt-12 mb-6">
-                        <div class="relative">
+                <div class="card-body px-4 px-md-5 pb-5">
+                    <div class="d-flex justify-content-between align-items-end mb-4" style="margin-top: -3rem;">
+                        <div class="position-relative">
                             @if($user->profile_picture)
-                                <img class="h-32 w-32 rounded-full border-4 border-[#0f0f0f] object-cover shadow-md" src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}">
+                                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->name }}" 
+                                    class="rounded-circle border border-4 shadow-sm object-fit-cover" 
+                                    style="width: 128px; height: 128px; border-color: #0f0f0f !important;">
                             @else
-                                <div class="h-32 w-32 rounded-full border-4 border-[#0f0f0f] bg-[#e0bb35] flex items-center justify-center text-[#0f0f0f] text-4xl font-bold shadow-md">
+                                <div class="rounded-circle border border-4 d-flex align-items-center justify-content-center shadow-sm fw-bold" 
+                                    style="width: 128px; height: 128px; border-color: #0f0f0f !important; background-color: #e0bb35; color: #0f0f0f; font-size: 2.25rem;">
                                     {{ substr($user->name, 0, 1) }}
                                 </div>
                             @endif
                         </div>
 
-                        <a href="{{ route('users.edit') }}" class="mb-2 inline-flex items-center px-4 py-2 bg-[#e0bb35] border border-[#e0bb35] rounded-md font-semibold text-xs text-black uppercase tracking-widest shadow-sm hover:bg-[#e3cf85] transition">
-                            <svg class="w-4 h-4 mr-2 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        <a href="{{ route('users.edit') }}" class="btn mb-2 d-inline-flex align-items-center text-black text-uppercase fw-bold shadow-sm" 
+                            style="background-color: #e0bb35; border-color: #e0bb35; font-size: 0.75rem; letter-spacing: 1px;">
+                            <svg class="me-2" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                             Edit Profile
                         </a>
                     </div>
 
-                    <div class="mb-6">
-                        <h1 class="text-3xl font-bold text-[#e0bb35]">{{ $user->name }}</h1>
-                        <p class="text-sm font-medium text-gray-300">{{ $user->userRole->name ?? 'User' }}</p>
-                        <p class="text-gray-200 mt-1">{{ $user->email }}</p>
+                    <div class="mb-4">
+                        <h1 class="fw-bold mb-0" style="color: #e0bb35;">{{ $user->name }}</h1>
+                        <p class="text-secondary fw-medium mb-1">{{ $user->userRole->name ?? 'User' }}</p>
+                        <p class="text-light mb-0">{{ $user->email }}</p>
                     </div>
 
-                    <hr class="border-[#e0bb35] my-6">
+                    <hr class="my-4" style="border-color: #e0bb35; opacity: 1;">
 
-                    <div class="mt-6 pt-6 border-t border-[#e0bb35]">
-                        <h3 class="text-lg font-medium text-red-600">Delete Account</h3>
-                        <p class="text-sm text-gray-300 mb-4">Permanently delete your account and all associated data.</p>
+                    <div class="pt-2">
+                        <h3 class="h5 fw-medium text-danger">Delete Account</h3>
+                        <p class="small text-secondary mb-3">Permanently delete your account and all associated data.</p>
                         
-                        <form method="POST" action="{{ route('users.destroy') }}" class="inline-block" onsubmit="return confirm('Are you absolutely sure? This action cannot be undone.');">
+                        <form method="POST" action="{{ route('users.destroy') }}" class="d-inline-block" onsubmit="return confirm('Are you absolutely sure? This action cannot be undone.');">
                             @csrf
                             @method('delete')
                             
-                            <div class="flex gap-2 items-center">
-                                <input type="password" name="password" placeholder="Confirm Password" required class="text-sm text-gray-300 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 px-3 py-2">
-                                <button type="submit" class="px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                            <div class="d-flex gap-2 align-items-center">
+                                <input type="password" name="password" placeholder="Confirm Password" required 
+                                    class="form-control form-control-sm bg-white text-dark border-secondary"
+                                    style="max-width: 200px;">
+                                
+                                <button type="submit" class="btn btn-danger btn-sm text-uppercase fw-bold" style="font-size: 0.75rem; letter-spacing: 1px;">
                                     Delete Account
                                 </button>
                             </div>
                             @error('password')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                                <p class="text-danger small mt-1 mb-0">{{ $message }}</p>
                             @enderror
                         </form>
                     </div>
@@ -120,7 +138,6 @@
                 </div>
             </div>
         </div>
-
     @endif
 </div>
 @endsection
