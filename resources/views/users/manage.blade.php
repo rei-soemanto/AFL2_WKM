@@ -97,13 +97,6 @@
 
                     <hr class="border-[#e0bb35] my-6">
 
-                    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
-                        <div class="sm:col-span-1">
-                            <dt class="text-sm font-medium text-[#e0bb35]">Assigned Projects</dt>
-                            <dd class="mt-1 text-sm text-gray-300">{{ $user->projectRoleAssignments->count() }} Active</dd>
-                        </div>
-                    </dl>
-
                     <div class="mt-6 pt-6 border-t border-[#e0bb35]">
                         <h3 class="text-lg font-medium text-red-600">Delete Account</h3>
                         <p class="text-sm text-gray-300 mb-4">Permanently delete your account and all associated data.</p>
