@@ -51,11 +51,16 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    @if(Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Admin')
+                    @if(
+                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Admin' || 
+                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Manager' || 
+                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Employee')
                         <li><a class="dropdown-item" href="https://management.thewkm.com">Management Panel</a></li>
                     @else
                         <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
                     @endif
+
+                    <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
 
                     <li><hr class="dropdown-divider"></li>
                     <li>

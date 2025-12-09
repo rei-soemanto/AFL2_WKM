@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 
 Auth::routes();
 
@@ -33,6 +34,15 @@ Route::delete('/user_interest/service/{id}', [PageController::class, 'destroyInt
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('/users', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users', [UserController::class, 'destroy'])->name('users.destroy');
+
+});
 
 Route::get('/storage-link', function () {
     try {
