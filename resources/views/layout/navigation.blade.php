@@ -55,7 +55,7 @@
                         Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Admin' || 
                         Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Manager' || 
                         Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Employee')
-                        <li><a class="dropdown-item" href="https://management.thewkm.com">Management Panel</a></li>
+                        <li><a class="dropdown-item" href="https://management.thewkm.com/projects">Management Panel</a></li>
                     @else
                         <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
                     @endif
