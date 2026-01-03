@@ -1,110 +1,82 @@
-<nav class="navbar navbar-dark navbar-custom">
-    <div class="container-fluid row align-items-center p-0">
+<nav class="navbar navbar-dark navbar-custom flex-column p-0 shadow">
+    <div class="container-fluid row align-items-center g-0 px-3 py-2">
+        <div class="col col-lg-3 d-flex justify-content-start">
+            <a class="navbar-brand m-0" href="{{ url('/') }}">
+                <img src="{{ asset('img/logoWKM.png') }}" alt="WKM Logo" class="navbar-logo">
+            </a>
+        </div>
 
-        {{-- 
-        * ====================
-        * Logo
-        * ====================
-        --}}
-        <a class="navbar-brand col-auto flex-shrink-0 me-3 navbar-side" href="{{ url('/') }}">
-            <img src="{{ asset('img/logoWKM.png') }}" alt="WKM Logo" class="navbar-logo">
-        </a>
+        <div class="col-lg-6 d-none d-lg-flex justify-content-center">
+            <ul class="navbar-nav flex-row fw-bold gap-2">
+                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/project') }}">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
+            </ul>
+        </div>
 
-        {{-- 
-        * ====================
-        * Nav links (Desktop MD–XL)
-        * ====================
-        --}}
-        <ul class="navbar-nav col d-none d-lg-flex flex-row flex-grow-1 justify-content-center fw-bold text-center mx-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/') }}">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/project') }}">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/product') }}">Products</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url('/service') }}">Services</a>
-            </li>
-        </ul>
-
-        {{-- 
-        * ====================
-        * Auth / Guest
-        * ====================
-        --}}
-        @guest
-            <div class="col-auto">
-                <a href="{{ route('login') }}" class="btn btn-custom fw-bold text-nowrap mx-2 mx-lg-5">
-                    Login
-                </a>
-            </div>
-        @endguest
-
-        @auth
-            <div class="nav-item dropdown col-auto flex-shrink-1 text-end navbar-side">
-                <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="username-text">
-                        Hello, {{ Auth::user()->name }}
-                    </span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    @if(
-                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Admin' || 
-                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Manager' || 
-                        Auth::user() && Auth::user()->userRole && Auth::user()->userRole->name === 'Employee')
-                        <li><a class="dropdown-item" href="https://management.thewkm.com/projects">Management Panel</a></li>
-                    @else
-                        <li><a class="dropdown-item" href="{{ route('user.interests') }}">My Interest List</a></li>
-                    @endif
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{{ route('users.index') }}">Account Management</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault(); this.closest('form').submit();">
-                                Log Out
+        <div class="col col-lg-3 d-flex justify-content-end align-items-center">
+            @auth
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle fw-bold p-0" 
+                        href="#" 
+                        id="navbarDropdown" 
+                        role="button" 
+                        data-bs-toggle="dropdown" 
+                        data-bs-display="static"
+                        aria-expanded="false">
+                        <span class="username-text">
+                            Hello, {{ explode(' ', Auth::user()->name)[0] }}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="navbarDropdown">    
+                        @php
+                            $isStaff = Auth::user()->userRole && in_array(Auth::user()->userRole->name, ['Admin', 'Manager', 'Employee']);
+                        @endphp
+                        <li>
+                            <a class="dropdown-item" href="{{ $isStaff ? 'https://management.thewkm.com/projects' : route('user.interests') }}">
+                                {{ $isStaff ? 'Management Panel' : 'My Interest List' }}
                             </a>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        @endauth
-    </div>
-
-    {{-- 
-    * ====================
-    * Nav for below LG
-    * ====================
-    --}}
-
-    {{-- Line and button --}}
-    <div class="w-100 d-lg-none">
-        <hr class="custom-divider mt-0"> 
-        
-        <div class="text-center py-2">
-            <button class="btn btn-link custom-arrow-toggle" 
-                    type="button" 
-                    data-bs-toggle="collapse" 
-                    data-bs-target="#navLinksCollapse" 
-                    aria-expanded="false" 
-                    aria-controls="navLinksCollapse">
-                <i class="bi bi-caret-down-fill"></i>
-            </button>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('users.index') }}">Account Management</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Log Out</a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-outline-warning fw-bold px-4">Login</a>
+            @endauth
         </div>
     </div>
 
-    {{-- Content of nav when button is pressed --}}
-    <div class="collapse navbar-collapse" id="navLinksCollapse">
-        <ul class="navbar-nav flex-column flex-sm-row align-items-center justify-content-center mb-0 mx-auto w-100 custom-nav-xs">
-            <li class="nav-item mx-sm-1 py-2"><a class="nav-link" href="{{ url('/') }}">About</a></li>
-            <li class="nav-item mx-sm-1 py-2"><a class="nav-link" href="{{ url('/project') }}">Portfolio</a></li>
-            <li class="nav-item mx-sm-1 py-2"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
-            <li class="nav-item mx-sm-1 py-2"><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
-        </ul>
+    <div class="w-100 d-lg-none">
+        <hr class="custom-divider"> 
+        <div class="text-center py-2">
+            <button class="btn btn-link custom-arrow-toggle p-0"
+                    type="button"
+                    id="mobileMenuToggle"
+                    aria-expanded="false">
+                <i class="bi bi-caret-down-fill"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-mask">
+            <div class="mobile-slide-menu" id="mobileMenu">
+                <div class="container pb-2">
+                    <ul class="navbar-nav d-flex flex-column flex-md-row align-items-center justify-content-center text-center fw-bold">
+                        <li class="nav-item w-100 w-md-auto"><a class="nav-link" href="{{ url('/') }}">About</a></li>
+                        <li class="nav-item w-100 w-md-auto"><a class="nav-link" href="{{ url('/project') }}">Portfolio</a></li>
+                        <li class="nav-item w-100 w-md-auto"><a class="nav-link" href="{{ url('/product') }}">Products</a></li>
+                        <li class="nav-item w-100 w-md-auto"><a class="nav-link" href="{{ url('/service') }}">Services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>

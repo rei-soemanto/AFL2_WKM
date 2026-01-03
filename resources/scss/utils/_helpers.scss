@@ -3,7 +3,7 @@
     height: 1px;
     width: 100%;
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
-    margin: 0.75rem 0;
+    margin: 0;
 }
 
 .bg-white-75 {
@@ -12,4 +12,33 @@
 
 .display-huge {
     font-size: 8rem;
+}
+
+.text-responsive-h1 {
+    font-size: $font-size-h1;
+}
+
+.text-responsive-h2 {
+    font-size: $font-size-h2;
+}
+
+.text-responsive-h3 {
+    font-size: $font-size-h3;
+}
+
+.text-responsive-lead {
+    font-size: $font-size-lead;
+}
+
+.text-responsive-breadcrumb {
+    font-size: $font-size-breadcrumb;
+}
+
+.text-responsive-btn {
+    font-size: $font-size-btn;
+    padding: $spacing-btn-padding;
+}
+
+.text-responsive-btn-sm {
+    font-size: $font-size-btn-sm;
 }

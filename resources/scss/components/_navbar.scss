@@ -1,102 +1,140 @@
-/* ======================
-    NAVBAR BASE
-====================== */
+/* Navbar Main Style */
 .navbar-custom {
     background-color: $color-bg-dark;
-    padding: 0.75rem 1rem;
-    transition: padding 0.3s ease;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    position: relative;
+    z-index: 100; 
 
-
-    // Logo
     .navbar-logo {
-        height: 100px;
+        height: clamp(3rem, 10vw, 6rem);
+        width: auto;
         transition: height 0.3s ease;
-
-        @include respond(md) { height: 4rem; }
-        @include respond(sm) { height: 3.5rem; }
     }
 
-    // Links
     .nav-link {
         color: $color-gold;
-        font-size: 18px;
-        padding: 0 0.8rem;
+        font-size: clamp(1rem, 1.75vw, 1.35rem);
+        padding: 0.5rem 1rem;
         transition: all 0.3s ease;
 
         &:hover, &:focus {
-            color: $color-gold-light;
-        }
-
-        @include respond(xl) {
-            font-size: 20px;
-            padding: 0 1rem;
-        }
-
-        @include respond(lg) {
-            font-size: 1rem;
-            padding: 0 0.5rem;
+            color: $color-white;
         }
     }
 }
 
-/* ======================
-    RESPONSIVE STYLES
-====================== */
-
-// Long username handling
+/* User Dropdown Style */
 .nav-item.dropdown {
-    max-width: 250px;
-    flex-shrink: 1;
     position: relative;
-    overflow: visible;
-
-    .nav-link {
-        display: flex;
-        align-items: center;
-        flex-shrink: 0;
-        min-width: 0;
-        white-space: nowrap;
-
-        .username-text {
-            display: inline-block;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-
-            @include respond(lg) { max-width: 20rem; }
-        }
-
-        &:hover {
-            color: $color-gold-light;
-        }
-    }
 
     .dropdown-toggle {
         display: flex;
         align-items: center;
-        min-width: 0;
+        gap: 8px;
+        color: $color-gold !important;
+        
+        .username-text {
+            display: inline-block;
+            max-width: clamp(120px, 40vw, 245px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .dropdown-menu {
+        display: block !important; 
+        position: absolute !important; 
+        top: 100% !important;
+        right: 0 !important;
+        left: auto !important;
+        
+        background-color: lighten($color-bg-dark, 5%);
+        border: 1px solid rgba($color-gold, 0.2);
+        margin-top: 10px;
+        
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(15px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.show {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+    }
+
+    .dropdown-item {
+        color: $color-white;
+        font-weight: bold;
+        padding: 0.4rem 1.5rem;
+        text-align: right;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            background-color: rgba($color-white, 0.05);
+            color: $color-gold;
+        }
     }
 }
 
+/* Mobile Navigation Section */
+.mobile-menu-mask {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
 
-/* ======================
-    RESPONSIVE NAV TOGGLE (XS - LG)
-====================== */
+.mobile-slide-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        &:hover {
+            color: $color-gold-light;
+        }
+    }
+}
+
+.mobile-menu-mask.open .mobile-slide-menu {
+    transform: translateY(0); 
+}
+
+
+/* Custom Arrow Toggle Animation */
 .custom-arrow-toggle {
-    border: none;
-    background: none;
     color: $color-gold;
-
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    
     i {
         font-size: 1.5rem;
-        transition: all 0.3s ease-in-out;
+        display: inline-block;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover, &:active {
+        color: $color-gold-light !important;
+        box-shadow: none;
     }
 
     &[aria-expanded="true"] i {
-        transform: rotate(180deg) !important;
-    }
-
-    &:hover {
-        color: $color-gold-light;
+        transform: rotate(180deg);
     }
 }

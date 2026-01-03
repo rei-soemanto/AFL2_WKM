@@ -42,25 +42,25 @@ class PageController extends Controller
     // Display list of all projects grouped by category
     public function projects(): View
     {
-        $project_data = [];
-        $categories = ProjectCategory::whereHas('projects')->with(['projects.images'])->get();
+        $project_data = ProjectCategory::whereHas('projects')
+            ->with(['projects' => function($query) {
+                $query->with(['images' => function($q) {
+                    $q->orderBy('upload_order', 'asc');
+                }]);
+            }])
+            ->get()
+            ->mapWithKeys(function ($category) {
+                return [$category->name => $category->projects->map(function ($project) {
+                    return [
+                        'project_id'  => $project->id,
+                        'name'        => $project->name,
+                        'description' => $project->description,
+                        'image'       => $project->images->first()?->image_path,
+                    ];
+                })];
+            });
 
-        foreach ($categories as $category) {
-            $projects_in_category = [];
-            foreach ($category->projects as $project) {
-                $first_image = $project->images->sortBy('upload_order')->first();
-
-                $projects_in_category[] = [
-                    'project_id' => $project->id,
-                    'name' => $project->name,
-                    'description' => $project->description,
-                    'image' => $first_image ? $first_image->image_path : null,
-                ];
-            }
-            $project_data[$category->name] = $projects_in_category;
-        }
-
-        return view('project', ['project_data' => $project_data]);
+        return view('project', compact('project_data'));
     }
 
     // Display details of single project

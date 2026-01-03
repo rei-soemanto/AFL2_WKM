@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             ServiceCategorySeeder::class,
             ProjectCategorySeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            ProductSeeder::class,
+            ServiceSeeder::class,
+            ProjectSeeder::class,
         ]);
     }
 }

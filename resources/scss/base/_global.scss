@@ -10,3 +10,17 @@ html {
 .bg-custom-card-dark {
     background-color: $color-bg-dark !important;
 }
+
+.main-page-wrapper {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-overlay-standard {
+    background-color: $color-overlay;
+}

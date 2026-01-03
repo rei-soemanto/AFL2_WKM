@@ -1,0 +1,81 @@
+/* Profile Page Wrapper */
+.profile-main-wrapper {
+    background-color: $color-black;
+    min-height: 100vh;
+}
+
+/* Card Styling */
+.card-profile {
+    background-color: $color-bg-dark;
+    border: none;
+    border-radius: $spacing-radius-detail;
+    overflow: hidden;
+}
+
+/* Banner Gradient */
+.profile-banner {
+    height: 128px;
+    background: linear-gradient(to right, $color-gold, #e3cf85);
+}
+
+/* Profile Picture Overlap Logic */
+.profile-avatar-container {
+    margin-top: -3rem;
+    
+    .avatar-img, .avatar-placeholder {
+        width: 128px;
+        height: 128px;
+        border: 4px solid $color-bg-card-detail !important;
+        object-fit: cover;
+    }
+
+    .avatar-placeholder {
+        background-color: $color-gold;
+        color: $color-black;
+        font-size: 2.25rem;
+    }
+}
+
+/* Form Styling */
+.profile-form {
+    .form-label {
+        color: $color-gold;
+        font-weight: bold;
+        font-size: 0.875rem;
+    }
+
+    .form-control {
+        background-color: transparent;
+        color: $color-white;
+        border: 1px solid $color-gold;
+        
+        &:focus {
+            background-color: rgba($color-white, 0.05);
+            box-shadow: 0 0 0 0.25rem rgba($color-gold, 0.25);
+            border-color: $color-gold;
+        }
+    }
+
+    hr {
+        border-color: $color-gold;
+        opacity: 0.5;
+    }
+}
+
+/* Responsive Overrides */
+.profile-header-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @include respond(sm) {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        
+        .btn-edit {
+            margin-top: 1rem;
+        }
+    }
+}

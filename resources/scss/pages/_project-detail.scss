@@ -1,0 +1,61 @@
+/* Main container with fixed branding background */
+.project-detail-wrapper {
+    background-color: $color-black;
+    background-image: url('../../../public/img/aboutpagebg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Page Background Overlay */
+.detail-overlay {
+    background-color: $color-overlay;
+    width: 100%;
+}
+
+/* Translucent Content Card */
+.detail-content-card {
+    background-color: $color-bg-card-detail;
+    border-radius: $spacing-radius-detail;
+    
+    // Breadcrumb text color logic
+    .breadcrumb-item {
+        a {
+            color: $color-breadcrumb-link;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color-gold;
+            }
+        }
+        &.active {
+            color: $color-text-muted;
+        }
+    }
+
+    // Header and body text base colors inside light card
+    .text-responsive-h1, 
+    .text-responsive-h2, 
+    .text-responsive-lead {
+        color: $color-bg-dark;
+    }
+}
+
+/* Project Image Handling */
+.project-detail-img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+/* Carousel Control Customization */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba($color-black, 0.5);
+    border-radius: 50%;
+    background-size: 60%;
+}

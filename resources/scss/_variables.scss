@@ -1,5 +1,23 @@
 $color-bg-dark: #0F0F0F;
+$color-black: #000000;
 $color-gold: #e0bb35;
 $color-gold-light: #efd781;
 $color-white: #ffffff;
+$color-text-muted: #6c757d;
 $color-overlay: rgba(15, 15, 15, 0.7);
+$color-bg-card-detail: rgba(255, 255, 255, 0.95);
+$color-shadow-card-detail: rgba(0, 0, 0, 0.5);
+$color-breadcrumb-link: $color-black;
+
+$spacing-padding-detail-desktop: 3rem;
+$spacing-padding-detail-mobile: 1.25rem;
+$spacing-radius-detail: 1rem;
+$spacing-btn-padding: clamp(0.6rem, 2vw, 1rem);
+
+$font-size-h1: clamp(1.8rem, 4vw, 3rem);
+$font-size-h2: clamp(1.5rem, 3vw, 2.5rem);
+$font-size-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+$font-size-lead: clamp(0.85rem, 2vw, 1rem);
+$font-size-btn: clamp(0.85rem, 2vw, 2rem);
+$font-size-btn-sm: clamp(0.85rem, 2vw, 1rem);
+$font-size-breadcrumb: clamp(0.85rem, 2vw, 1rem);

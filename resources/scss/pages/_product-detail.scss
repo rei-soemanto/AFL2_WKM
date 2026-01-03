@@ -1,0 +1,66 @@
+/* Product Detail Wrapper Section */
+.product-detail-wrapper {
+    background-color: $color-black;
+    background-image: url('../img/aboutpagebg.jpg'); // Correct relative path
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Background Overlay Section */
+.detail-overlay {
+    background-color: $color-overlay;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Main Content Card Section */
+.detail-content-card {
+    background-color: $color-bg-card-detail;
+    border-radius: $spacing-radius-detail;
+    box-shadow: 0 1rem 3rem $color-shadow-card-detail !important;
+    width: 100%;
+    
+    // Breadcrumb text color logic
+    .breadcrumb-item {
+        a {
+            color: $color-breadcrumb-link;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color-gold;
+            }
+        }
+        &.active {
+            color: $color-text-muted;
+        }
+    }
+
+    // Header and body text base colors inside light card
+    .text-responsive-h1, 
+    .text-responsive-h2, 
+    .text-responsive-lead {
+        color: $color-bg-dark;
+    }
+}
+
+/* Action Button Group Section */
+.detail-button-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 575.98px) {
+        flex-direction: column;
+        align-items: stretch;
+        
+        .btn, form, a {
+            width: 100%;
+        }
+    }
+}

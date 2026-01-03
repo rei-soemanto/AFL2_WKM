@@ -1,19 +1,45 @@
+/* Service Section Container */
 .service-main-background {
+    background-color: $color-black;
+    background-image: url('../../../public/img/aboutpagebg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    min-height: 100vh;
 }
 
+/* Page Background Overlay */
 .service-bg-overlay {
-    background-color: rgba(15, 15, 15, 0.7);
+    background-color: $color-overlay;
+    min-height: 100vh;
 }
 
+/* Translucent Category Card */
 .card-translucent {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: $color-bg-card-detail;
+    border-radius: $spacing-radius-detail;
 }
 
+/* Individual Service Item Styling */
 .service-item {
     border-left: 4px solid $color-gold;
     padding-left: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+    &:hover {
+        background-color: rgba($color-gold, 0.05);
+        transform: translateX(5px);
+    }
+
+    .text-responsive-h3 {
+        color: $color-bg-dark; // Ensuring title is visible on light card
+    }
+}
+
+/* Utility Gold Text */
+.text-gold {
+    color: $color-gold !important;
 }

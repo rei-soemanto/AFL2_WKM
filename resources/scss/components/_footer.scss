@@ -1,50 +1,95 @@
+/* Main Footer Section */
 .site-footer {
-    padding: 60px 0;
+    padding: clamp(3rem, 8vw, 5rem) 0;
     background-color: $color-bg-dark;
+    color: $color-white;
 
-    @include respond(xl) {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-
-    @include respond(md) {
-        padding-left: 20px;
-        padding-right: 20px;
+    p {
+        font-size: $font-size-lead;
+        line-height: 1.6;
     }
 }
 
-    .footer-logo {
-    height: 120px;
+/* Footer Logo Section */
+.footer-logo {
+    height: 150px;
+    object-fit: contain;
 
-    @include respond(xl) { height: 80px; }
     @include respond(md) {
-        height: 150px;
+        height: 100px;
         display: block;
         margin: 0 auto;
     }
 }
 
+/* Contact Info List Section */
+.footer-contact-list {
+    font-size: $font-size-lead;
+    
+    li svg {
+        color: $color-white;
+        flex-shrink: 0;
+    }
+}
+
+/* Social Media Icons Section */
 .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     background-color: $color-white;
     color: $color-bg-dark;
     border-radius: 50%;
-    transition: transform 0.2s ease-in-out;
+    transition: all 0.3s ease;
 
     &:hover {
-        transform: scale(1.1);
+        transform: translateY(-3px);
+        background-color: $color-gold;
+        color: $color-white;
     }
 }
 
+/* Contact Form Section */
+.footer-form {
+    .form-control {
+        background-color: rgba($color-white, 1);
+        border: 1px solid rgba($color-white, 0.1);
+        color: $color-bg-dark;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba($color-bg-dark, 0.5);
+        }
+
+        &:focus {
+            background-color: rgba($color-white, 1);
+            border: 1px solid $color-gold;
+            box-shadow: none;
+            color: $color-bg-dark;
+        }
+    }
+
+    .btn-submit {
+        background-color: $color-gold;
+        color: $color-bg-dark;
+        padding: 0.8rem 2rem;
+        border-radius: 8px;
+        width: 100%;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: darken($color-gold, 10%);
+        }
+    }
+}
+
+/* Copyright Section */
 .footer-copyright {
     background-color: $color-bg-dark;
-    font-size: 16px;
-
-    @include respond(md) {
-        font-size: 12px;
-    }
+    border-top: 1px solid rgba($color-white, 0.05);
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    padding: 1.5rem 0;
 }

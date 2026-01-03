@@ -1,0 +1,66 @@
+/* Service Detail Page Wrapper */
+.service-detail-wrapper {
+    background-color: $color-black;
+    background-image: url('../img/logoWKM.jpg'); 
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Page Overlay Section */
+.detail-overlay {
+    background-color: $color-overlay;
+    width: 100%;
+}
+
+/* Main Detail Card (Translucent White) */
+.detail-content-card {
+    background-color: $color-bg-card-detail;
+    border-radius: $spacing-radius-detail;
+    width: 100%;
+
+    // Text color overrides for light background
+    .text-responsive-h1, 
+    .text-responsive-h2, 
+    .text-responsive-lead {
+        color: $color-bg-dark;
+    }
+
+    // Breadcrumb logic
+    .breadcrumb-item {
+        a {
+            color: $color-breadcrumb-link;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+                color: $color-gold;
+            }
+        }
+        &.active {
+            color: $color-text-muted;
+        }
+    }
+}
+
+/* Action Button Container */
+.detail-button-group {
+    display: flex;
+    gap: 1rem;
+
+    .btn {
+        padding: $spacing-btn-padding 2rem;
+    }
+
+    @media (max-width: 575.98px) {
+        flex-direction: column;
+        
+        .btn, form {
+            width: 100%;
+        }
+    }
+}
