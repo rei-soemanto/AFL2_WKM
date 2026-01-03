@@ -7,14 +7,22 @@
     "file": "assets/bootstrap-icons-mSm7cUeB.woff2",
     "src": "node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2"
   },
+  "public/img/aboutpagebg.jpg": {
+    "file": "assets/aboutpagebg-DT5cJzXw.jpg",
+    "src": "public/img/aboutpagebg.jpg"
+  },
+  "public/img/logoWKM.jpg": {
+    "file": "assets/logoWKM-rYmIcf6Z.jpg",
+    "src": "public/img/logoWKM.jpg"
+  },
   "resources/js/app.js": {
-    "file": "assets/app--h2KBlbM.js",
+    "file": "assets/app-DMkanUh1.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/scss/app.scss": {
-    "file": "assets/app-ZXYK034h.css",
+    "file": "assets/app-DDcjLTxz.css",
     "src": "resources/scss/app.scss",
     "isEntry": true,
     "names": [
