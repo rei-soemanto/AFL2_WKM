@@ -34,8 +34,9 @@
                         <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label text-white fw-bold">Email</label>
-                                <input type="email" id="email" name="email" class="form-control form-control-dark" required>
+                                <label for="reg_email" class="form-label text-white fw-bold">Email</label>
+                                <input type="email" id="reg_email" name="email" class="form-control form-control-dark" required>
+                                <div id="email-feedback" class="invalid-feedback fw-bold"></div>
                             </div>
                             <div class="mb-4">
                                 <label for="password" class="form-label text-white fw-bold">Password</label>

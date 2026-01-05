@@ -65,5 +65,39 @@
             });
         });
     });
+
+    document.getElementById('reg_email').addEventListener('blur', function() {
+        var email = this.value;
+        var feedbackElement = document.getElementById('email-feedback');
+        var inputElement = this;
+
+        // Basic format check before sending request
+        if(email.length > 5 && email.includes('@')) {
+            fetch("{{ route('check.email') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ email: email })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    // Email is taken
+                    inputElement.classList.add('is-invalid');
+                    inputElement.classList.remove('is-valid');
+                    feedbackElement.textContent = 'This email is already registered.';
+                    feedbackElement.style.display = 'block';
+                } else {
+                    // Email is available
+                    inputElement.classList.remove('is-invalid');
+                    inputElement.classList.add('is-valid');
+                    feedbackElement.style.display = 'none';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    });
 </script>
 </html>

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 Auth::routes();
 
@@ -11,6 +13,11 @@ Auth::routes();
 Route::get('/', function () {
     return view('about');
 });
+
+Route::post('/check-email', function (Request $request) {
+    $exists = User::where('email', $request->email)->exists();
+    return response()->json(['exists' => $exists]);
+})->name('check.email');
 
 // Products
 Route::get('/product', [PageController::class, 'products'])->name('product');
