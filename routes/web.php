@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
@@ -37,8 +39,6 @@ Route::post('/product/{id}/add-interest', [PageController::class, 'addInterested
 Route::post('/service/{id}/add-interest', [PageController::class, 'addInterestedService'])->middleware('auth')->name('interest.service.store');
 Route::delete('/user_interest/product/{id}', [PageController::class, 'destroyInterestedProduct'])->middleware('auth')->name('interest.product.destroy');
 Route::delete('/user_interest/service/{id}', [PageController::class, 'destroyInterestedService'])->middleware('auth')->name('interest.service.destroy');
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

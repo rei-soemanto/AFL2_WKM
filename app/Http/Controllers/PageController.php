@@ -29,7 +29,7 @@ class PageController extends Controller
         $product = Product::where('is_hidden', false)->with(['brand', 'category'])->findOrFail($id);
 
         $isInterested = false;
-        if (Auth::check() && Auth::user()->role != 'admin') {
+        if (Auth::check() && Auth::user()->userRole?->name !== 'admin') {
             $isInterested = Auth::user()->interested_products()->where('product_id', $product->id)->exists();
         }
 
@@ -106,7 +106,7 @@ class PageController extends Controller
         $service = Service::with('category')->findOrFail($id);
 
         $isInterested = false;
-        if (Auth::check() && Auth::user()->role != 'admin') {
+        if (Auth::check() && Auth::user()->userRole?->name !== 'admin') {
             $isInterested = Auth::user()->interested_services()->where('service_id', $service->id)->exists();
         }
 

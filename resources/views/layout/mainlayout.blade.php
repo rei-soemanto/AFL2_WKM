@@ -66,7 +66,8 @@
         });
     });
 
-    document.getElementById('reg_email').addEventListener('blur', function() {
+    const regEmailEl = document.getElementById('reg_email');
+    if (regEmailEl) regEmailEl.addEventListener('blur', function() {
         var email = this.value;
         var feedbackElement = document.getElementById('email-feedback');
         var inputElement = this;

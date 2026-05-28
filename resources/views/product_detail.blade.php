@@ -39,11 +39,13 @@
                 
                 <div class="row g-4 g-lg-5">
                     {{-- Media Column --}}
+                    @if ($product->image)
                     <div class="col-lg-6">
-                        <img src="{{ asset('storage/' . $product->image) }}" 
-                             alt="{{ $product->name }}" 
+                        <img src="{{ asset('storage/' . $product->image) }}"
+                             alt="{{ $product->name }}"
                              class="img-fluid rounded-3 shadow-lg w-100">
                     </div>
+                    @endif
 
                     {{-- Content Column --}}
                     <div class="col-lg-6">
@@ -64,7 +66,7 @@
                             @endif
 
                             @auth
-                                @if(Auth::user()->role != 'admin')
+                                @if(Auth::user()->userRole?->name !== 'admin')
                                     @if ($isInterested)
                                         <button class="btn btn-success text-responsive-btn fw-bold" disabled>
                                             <i class="bi bi-check-lg"></i> Added to List

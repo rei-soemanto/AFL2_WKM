@@ -16,10 +16,11 @@ class Product extends Model
         'brand_id',
         'category_id',
         'name',
+        'is_hidden',
         'description',
         'image',
         'pdf_path',
-        'last_updated_by'
+        'last_update_by',
     ];
 
     public function brand(): BelongsTo
@@ -34,6 +35,6 @@ class Product extends Model
 
     public function lastUpdatedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'last_updated_by');
+        return $this->belongsTo(User::class, 'last_update_by');
     }
 }

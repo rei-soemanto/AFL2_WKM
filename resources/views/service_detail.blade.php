@@ -48,7 +48,7 @@
 
                         {{-- Action Buttons --}}
                         @auth
-                            @if(Auth::user()->role != 'admin')
+                            @if(Auth::user()->userRole?->name !== 'admin')
                                 <div class="detail-button-group">
                                     @if ($isInterested)
                                         <button class="btn btn-success text-responsive-btn fw-bold" disabled>

@@ -37,6 +37,6 @@ class Project extends Model
 
     public function lastUpdatedBy(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'last_updated_by');
+        return $this->belongsTo(User::class, 'last_update_by');
     }
 }
